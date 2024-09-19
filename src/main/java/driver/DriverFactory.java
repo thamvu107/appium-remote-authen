@@ -2,6 +2,7 @@ package driver;
 
 import capabilities.CapabilitiesFactory;
 import entity.ServerConfig;
+import enums.MobileRunModeType;
 import enums.PlatformType;
 import exceptions.PlatformNotSupportException;
 import io.appium.java_client.AppiumClientConfig;
@@ -20,15 +21,24 @@ import java.util.Objects;
 public class DriverFactory {
 
   private AppiumDriver driver;
+  private MobileRunModeType mobileRunModeType;
   private final PlatformType platformType;
   protected AppiumClientConfig appiumClientConfig;
 
   protected BaseOptions<?> caps;
 
-  public DriverFactory(PlatformType platformType, String configureFile) {
+//  public DriverFactory(PlatformType platformType, String configureFile) {
+//    this.platformType = platformType;
+//    this.caps = new CapabilitiesFactory(configureFile).getCaps(platformType);
+//    ServerConfig serverConfig = new ServerConfigUtil().getServerConfig();
+//    this.appiumClientConfig = new AppiumClientConfigManager(serverConfig).getAppiumClientConfig();
+//  }
+
+  public DriverFactory(MobileRunModeType mobileRunModeType, PlatformType platformType, String configureFile) {
+    this.mobileRunModeType = mobileRunModeType;
     this.platformType = platformType;
     this.caps = new CapabilitiesFactory(configureFile).getCaps(platformType);
-    ServerConfig serverConfig = new ServerConfigUtil().getServerConfig();
+    ServerConfig serverConfig = new ServerConfigUtil(mobileRunModeType).getServerConfig();
     this.appiumClientConfig = new AppiumClientConfigManager(serverConfig).getAppiumClientConfig();
   }
 
@@ -36,10 +46,10 @@ public class DriverFactory {
     if (Objects.isNull(driver)) {
       switch (platformType) {
         case ANDROID:
-          driver = new AndroidDriver(appiumClientConfig, caps);
+          driver = new AndroidDriverManager(appiumClientConfig, caps).createDriver();
           break;
         case IOS:
-          driver = new IOSDriver(appiumClientConfig, caps);
+          driver = new IOSDriverManager(appiumClientConfig, caps).createDriver();
           break;
         default:
           throw new PlatformNotSupportException("Platform " + platformType + " is not supported");
