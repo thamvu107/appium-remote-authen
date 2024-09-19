@@ -6,6 +6,8 @@ import io.appium.java_client.AppiumDriver;
 
 import java.util.Objects;
 
+import static config.factory.ConfigFactory.getConfig;
+
 
 public class ThreadSafeDriver {
 
@@ -32,7 +34,8 @@ public class ThreadSafeDriver {
 
   private static void initDriver(PlatformType platformType, String configureFile) {
 
-    AppiumDriver driver = new DriverFactory(platformType, configureFile).createDriver();
+//    AppiumDriver driver = new DriverFactory(platformType, configureFile).createDriver();
+    AppiumDriver driver = new DriverFactory(getConfig().getMobileRunMode(), platformType, configureFile).createDriver();
 
     setDriver(driver);
   }

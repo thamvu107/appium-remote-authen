@@ -44,39 +44,39 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>${appium.version}</version>
-            <!--                <exclusions>-->
-            <!--                    <exclusion>-->
-            <!--                        <groupId>org.seleniumhq.selenium</groupId>-->
-            <!--                        <artifactId>selenium-api</artifactId>-->
-            <!--                    </exclusion>-->
-            <!--                    <exclusion>-->
-            <!--                        <groupId>org.seleniumhq.selenium</groupId>-->
-            <!--                        <artifactId>selenium-remote-driver</artifactId>-->
-            <!--                    </exclusion>-->
-            <!--                    <exclusion>-->
-            <!--                        <groupId>org.seleniumhq.selenium</groupId>-->
-            <!--                        <artifactId>selenium-support</artifactId>-->
-            <!--                    </exclusion>-->
-            <!--                </exclusions>-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-support</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <!--            <dependency>-->
-        <!--                <groupId>org.seleniumhq.selenium</groupId>-->
-        <!--                <artifactId>selenium-api</artifactId>-->
-        <!--                <version>${seleniumhq.version}</version>-->
-        <!--            </dependency>-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>${seleniumhq.version}</version>
+        </dependency>
 
-        <!--            <dependency>-->
-        <!--                <groupId>org.seleniumhq.selenium</groupId>-->
-        <!--                <artifactId>selenium-remote-driver</artifactId>-->
-        <!--                <version>${seleniumhq.version}</version>-->
-        <!--            </dependency>-->
-        <!--            <dependency>-->
-        <!--                <groupId>org.seleniumhq.selenium</groupId>-->
-        <!--                <artifactId>selenium-support</artifactId>-->
-        <!--                <version>${seleniumhq.version}</version>-->
-        <!--            </dependency>-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>${seleniumhq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${seleniumhq.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -150,12 +150,12 @@
         <!--            <version>${allure.version}</version>-->
         <!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.aeonbits.owner/owner-java8 -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.aeonbits.owner</groupId>-->
-        <!--            <artifactId>owner-java8</artifactId>-->
-        <!--            <version>${owner.version}</version>-->
-        <!--        </dependency>-->
+<!--        https://mvnrepository.com/artifact/org.aeonbits.owner/owner-java8-->
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner-java8</artifactId>
+            <version>${owner.version}</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
