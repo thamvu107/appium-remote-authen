@@ -1,0 +1,61 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel test" verbose="2" preserve-order="false" parallel="methods" thread-count="5">
+
+
+    <test name="SingIn">
+        <classes>
+            <class name="testcaseV8.authen.SignInTest">
+                <methods>
+                    <include name="loginWithCorrectCredential">
+                        <parameter name="platformType" value="ANDROID"/>
+                        <parameter name="deviceType" value="EMULATOR"/>
+                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile1.properties"/>
+                    </include>
+                    <include name="loginWithIncorrectCredentials">
+                        <parameter name="platformType" value="ANDROID"/>
+                        <parameter name="deviceType" value="EMULATOR"/>
+                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile2.properties"/>
+                    </include>
+                    <include name="loginWithIncorrectEmail">
+                        <parameter name="platformType" value="ANDROID"/>
+                        <parameter name="deviceType" value="EMULATOR"/>
+                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile3.properties"/>
+                    </include>
+                </methods>
+            </class>
+
+            <class name="testcaseV8.ReportableTestStatus">
+                <methods>
+                    <include name="skipTest">
+                        <parameter name="platformType" value="ANDROID"/>
+                        <parameter name="deviceType" value="EMULATOR"/>
+                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile4.properties"/>
+                    </include>
+
+                    <include name="brokenTest">
+                        <parameter name="platformType" value="ANDROID"/>
+                        <parameter name="deviceType" value="EMULATOR"/>
+                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile5.properties"/>
+                    </include>
+                </methods>
+            </class>
+
+            <!--            <class name="testcaseV8.simple.SimpleTest">-->
+            <!--                <methods>-->
+            <!--                    <include name="oneTest">-->
+            <!--                        <parameter name="platformType" value="ANDROID"/>-->
+            <!--                        <parameter name="deviceType" value="EMULATOR"/>-->
+            <!--                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile4.properties"/>-->
+            <!--                    </include>-->
+            <!--                    <include name="twoTest">-->
+            <!--                        <parameter name="platformType" value="ANDROID"/>-->
+            <!--                        <parameter name="deviceType" value="EMULATOR"/>-->
+            <!--                        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile5.properties"/>-->
+            <!--                    </include>-->
+            <!--                    -->
+            <!--                </methods>-->
+            <!--            </class>-->
+        </classes>
+    </test>
+</suite>

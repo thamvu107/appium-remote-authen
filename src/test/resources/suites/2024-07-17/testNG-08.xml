@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="10" parallel="tests" name="Dynamic Regression">
+    <test thread-count="10" parallel="tests" name="Pixel_5_API_33">
+        <parameter name="deviceType" value="emulator"/>
+        <parameter name="configureFile" value="Pixel_5.properties"/>
+        <parameter name="platformType" value="android"/>
+        <parameter name="id" value="Pixel_5_API_33"/>
+        <parameter name="deviceName" value="Pixel 5 API 33"/>
+        <classes>
+            <class name="learning.testNG.parameters.dataProvider.testCases.SwipePageTest"/>
+        </classes>
+    </test> <!-- Pixel_5_API_33 -->
+    <test parallel="tests" name="192.168.1.14:5555">
+        <parameter name="deviceType" value="realDevice"/>
+        <parameter name="configureFile" value="Samsung_Galaxy_S8.properties"/>
+        <parameter name="platformType" value="android"/>
+        <parameter name="id" value="192.168.1.14:5555"/>
+        <parameter name="deviceName" value="Samsung_Galaxy_S8"/>
+        <classes>
+            <class name="learning.testNG.parameters.dataProvider.testCases.HomePageTest"/>
+            <class name="learning.testNG.parameters.dataProvider.testCases.SignUpTest"/>
+        </classes>
+    </test> <!-- 192.168.1.14:5555 -->
+    <test parallel="tests" name="192.168.1.13:5555">
+        <parameter name="deviceType" value="realDevice"/>
+        <parameter name="configureFile" value="physicalMobile.properties"/>
+        <parameter name="platformType" value="android"/>
+        <parameter name="id" value="192.168.1.13:5555"/>
+        <parameter name="deviceName" value="physicalMobile"/>
+        <classes>
+            <class name="learning.testNG.parameters.dataProvider.testCases.BaseTest"/>
+        </classes>
+    </test> <!-- 192.168.1.13:5555 -->
+    <test parallel="tests" name="Pixel_4_API_33">
+        <parameter name="deviceType" value="emulator"/>
+        <parameter name="configureFile" value="Pixel_4_API_33.properties"/>
+        <parameter name="platformType" value="android"/>
+        <parameter name="id" value="Pixel_4_API_33"/>
+        <parameter name="deviceName" value="Pixel 4 API 33"/>
+        <classes>
+            <class name="learning.testNG.parameters.dataProvider.testCases.SignInTest"/>
+        </classes>
+    </test> <!-- Pixel_4_API_33 -->
+</suite> <!-- Dynamic Regression -->

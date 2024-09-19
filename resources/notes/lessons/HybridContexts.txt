@@ -1,0 +1,7 @@
+- Hybrid context: a native app is embedded webview layout
+- web view context: (not use Appium inspector)
+    - Using chrome://inspect
+    - Open direct web is embedded and view on mobile mode (https://webdriver.io/)
+
+- Download the chromedriver and point the downloaded path in the code: https://stackoverflow.com/a/66621541
+- appium --allow-insecure chromedriver_autodownload to auto get chrome driver properly project

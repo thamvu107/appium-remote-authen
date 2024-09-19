@@ -1,0 +1,17 @@
+[
+  {
+    "id" : "Pixel_5_API_33_1",
+    "deviceType" : "emulator",
+    "configureFile" : "Pixel_5_API_33_1.properties"
+  },
+  {
+    "id" : "192.168.1.14:5555",
+    "deviceType" : "physicalDevice",
+    "configureFile" : "Samsung_Galaxy_S8.properties"
+  },
+  {
+    "id" : "192.168.1.14:5555",
+    "deviceType" : "realDevice",
+    "configureFile" : "Samsung_Galaxy_S8.properties"
+  }
+]

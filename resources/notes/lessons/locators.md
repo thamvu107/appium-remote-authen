@@ -1,0 +1,18 @@
+- Web locators:
+    - Class name
+    - CSS Selector
+    - ID
+    - Link text
+    - Name
+    - Partial link text
+    - Tag name
+    - XPath
+    -
+- Mobile locators:
+    - ID
+    - Class Name
+    - Accessibility ID
+    - Xpath
+    - Android UI Automator2
+    - iOS UI Automation
+    - Android View Tag (Espresso Only)

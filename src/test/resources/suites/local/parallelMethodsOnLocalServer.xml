@@ -1,0 +1,56 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel test" verbose="2" preserve-order="false" parallel="methods" thread-count="5">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="Authentication">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <classes>
+            <class name="testcaseV9.authen.SignUpTest">
+                <methods>
+                    <include name="signUpWithCorrectCredentials">
+                        <parameter name="configureFile"
+                                   value="deviceCapConfig/devicesOnLocal/android/mobile1.properties"/>
+                    </include>
+
+                    <include name="signUpWithInvalidCredentials">
+                        <parameter name="configureFile"
+                                   value="deviceCapConfig/devicesOnLocal/android/mobile2.properties"/>
+                    </include>
+
+                    <include name="signUpWithInvalidRepeatPassWord">
+                        <parameter name="configureFile"
+                                   value="deviceCapConfig/devicesOnLocal/android/mobile3.properties"/>
+                    </include>
+
+                </methods>
+            </class>
+
+            <class name="testcaseV9.authen.SignInTest">
+                <methods>
+                    <include name="loginWithCorrectCredential">
+                        <parameter name="configureFile"
+                                   value="deviceCapConfig/devicesOnLocal/android/mobile4.properties"/>
+                    </include>
+                    <include name="loginWithIncorrectEmail">
+                        <parameter name="configureFile"
+                                   value="deviceCapConfig/devicesOnLocal/android/mobile5.properties"/>
+                    </include>
+                    <!--                    <include name="loginWithIncorrectCredentials">-->
+                    <!--                        <parameter name="configureFile"-->
+                    <!--                                   value="deviceCapConfig/devicesOnLocal/android/mobile1.properties"/>-->
+                    <!--                    </include>-->
+                    <!--                    <include name="loginWithIncorrectPassword">-->
+                    <!--                        <parameter name="configureFile"-->
+                    <!--                                   value="deviceCapConfig/devicesOnLocal/android/mobile2.properties"/>-->
+                    <!--                    </include>-->
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+</suite>

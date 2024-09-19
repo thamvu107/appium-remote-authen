@@ -1,0 +1,1 @@
+org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Appium Settings app is not running after 30000ms

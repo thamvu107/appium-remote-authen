@@ -1,0 +1,14 @@
+#node-emulator2.toml
+[server]
+port = 5577
+
+[node]
+detect-drivers = false
+
+[relay]
+url = "http://[2402:800:6341:fc8f:7136:edae:748a:86db]:4727"
+#url = "http://localhost:4727"
+status-endpoint = "/status"
+configs = [
+    "1", "{\"platformName\": \"Android\", \"appium:udid\": \"192.168.1.12:5555\", \"appium:automationName\": \"uiautomator2\"}"
+]

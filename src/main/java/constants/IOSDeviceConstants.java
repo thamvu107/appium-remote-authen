@@ -1,0 +1,13 @@
+package constants;
+
+public interface IOSDeviceConstants {
+    String SIMULATOR_DEVICE_NAME = "iPhone 11";
+    String SIMULATOR_PLATFORM_VERSION = "17.5";
+    String SIMULATOR_UDID = "308CAD56-EE4E-470B-AABF-6A8A60B787B4";
+
+    int WDA_LOCAL_PORT = 8100;
+
+    String PHYSICAL_DEVICE_NAME = "iPhone 15 Pro";
+    String PHYSICAL_PLATFORM_VERSION = "17.4";
+    String PHYSICAL_UDID = "05F42C53-D528-449E-9D3C-12D97B811011";
+}

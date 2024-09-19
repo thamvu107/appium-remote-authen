@@ -1,0 +1,12 @@
+-search element scrollable:
+
+- UiAutomator: new UiScrollable(new UiSelector().scrollable(true))
+- ClassName: ( scrollable)
+    - android.widget.ScrollView
+    - android.widget.ListView
+    - androidx.recyclerview.widget.RecyclerView
+    - UIScrollView ( iOS)
+    - UITableView (iOS)
+- Verify scrollable:
+    - scrollable:true
+    - bound:[start.x, start.y][end.x, end.y]

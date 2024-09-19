@@ -1,0 +1,2 @@
+Unable to boot Simulator
+- Go to System Settings → General → Storage → Developer

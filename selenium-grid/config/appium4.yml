@@ -1,0 +1,8 @@
+# appium1.yml
+server:
+  #  address: 192.168.1.6
+  address: "2402:800:6341:fc8f:7136:edae:748a:86db"
+  port: 4729
+  keep-alive-timeout: 80
+  use-drivers:
+    - uiautomator2

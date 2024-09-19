@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- BeforeSuite Hook -->
+<suite name="Basic Suite">
+    <!-- BeforeTest Hook -->
+    <test name="SignIn">
+        <parameter name="email" value="tham.qa@gmail.com"/>
+        <parameter name="password" value="12345@myPass"/>
+        <classes>
+            <!-- BeforeClass Hook -->
+            <!-- BeforeMethod Hook -->
+            <class name="learning.parameters.SignInTest"/>
+            <!-- AfterMethod Hook -->
+            <!-- AfterClass Hook -->
+        </classes>
+    </test>
+    <!-- AfterTest Hook -->
+</suite>
+        <!-- AfterSuite Hook -->
