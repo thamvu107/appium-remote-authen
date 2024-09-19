@@ -25,14 +25,14 @@ public class ServerConfig {
 
 
 
-  public ServerConfig(String ip, int port, boolean authen) {
+  public ServerConfig(String ip, int port, boolean isAuthenticationRequired) {
 
     validateIP(ip);
     validatePort(port);
 
     this.ip = ip;
     this.port = port;
-    this.isAuthenticationRequired = authen;
+    this.isAuthenticationRequired = isAuthenticationRequired;
   }
 
   public void setIp(String ip) {
@@ -79,6 +79,6 @@ public class ServerConfig {
 
   @Override
   public String toString() {
-    return String.format("ServerConfig{protocol='%s', serverIP='%s', port=%d,  authen=%b}", "http", ip, port, isAuthenticationRequired);
+    return String.format("ServerConfig{protocol='%s', serverIP='%s', port=%d,  isAuthenticationRequired=%b}", "http", ip, port, isAuthenticationRequired);
   }
 }

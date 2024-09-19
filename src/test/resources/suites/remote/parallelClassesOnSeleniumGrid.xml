@@ -3,7 +3,6 @@
 <suite name="Parallel test" parallel="classes" verbose="2" preserve-order="false" thread-count="5">
     <test name="Parallel classes">
         <parameter name="platformType" value="ANDROID"/>
-        <parameter name="deviceType" value="EMULATOR"/>
         <classes>
             <class name="testcaseV9.authen.SignUpTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile1.properties"/>

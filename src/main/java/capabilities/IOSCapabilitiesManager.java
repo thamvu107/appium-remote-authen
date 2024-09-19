@@ -10,7 +10,13 @@ import static java.time.Duration.ofSeconds;
 
 public class IOSCapabilitiesManager {
 
-  public static XCUITestOptions getSimulatorCaps(PropertiesMap deviceProps) {
+  private String configureFile;
+
+  public IOSCapabilitiesManager(String configureFile) {
+    this.configureFile = configureFile;
+  }
+
+  public XCUITestOptions getSimulatorCaps(PropertiesMap deviceProps) {
 //    PropertiesUtils deviceProps = new PropertiesUtils(deviceCapConfig);
 
     XCUITestOptions caps = new XCUITestOptions()
@@ -35,7 +41,7 @@ public class IOSCapabilitiesManager {
     return caps;
   }
 
-  public static XCUITestOptions getRealIosMobileCaps(PropertiesMap deviceProps) {
+  public XCUITestOptions getRealIosMobileCaps(PropertiesMap deviceProps) {
     XCUITestOptions caps = new XCUITestOptions()
       .setUdid(deviceProps.getProperty("udid"))
       .setWdaLocalPort(deviceProps.getIntProperty("wdaLocalPort"))

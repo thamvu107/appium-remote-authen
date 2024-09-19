@@ -33,21 +33,21 @@ public abstract class BaseTestV10 {
   }
 
   @BeforeTest
-  @Parameters({"platformType", "deviceType", "configureFile"})
-  public void beforeTest(String platformType, String deviceType, String configureFile, ITestContext context) {
+  @Parameters({"platformType", "configureFile"})
+  public void beforeTest(String platformType, String configureFile, ITestContext context) {
 
-    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), DeviceType.valueOf(deviceType), configureFile);
+    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), configureFile);
 
     context.getCurrentXmlTest().setName(
-      context.getCurrentXmlTest().getName().concat(" - ").concat(platformType).concat(" - ").concat(deviceType).concat(" - ")
+      context.getCurrentXmlTest().getName().concat(" - ").concat(platformType).concat(" - ")
         .concat(getDeviceUdid()));
   }
 
   @BeforeMethod(alwaysRun = true)
-  @Parameters({"platformType", "deviceType", "configureFile"})
-  public void setUp(String platformType, String deviceType, String configureFile) {
+  @Parameters({"platformType", "configureFile"})
+  public void setUp(String platformType,  String configureFile) {
 
-    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), DeviceType.valueOf(deviceType), configureFile);
+    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), configureFile);
   }
 
   @AfterMethod(alwaysRun = true)
@@ -58,10 +58,9 @@ public abstract class BaseTestV10 {
     ThreadSafeDriver.closeDriver();
   }
 
-  protected void setLogParams(String platformType, String deviceType, String configureFile) {
+  protected void setLogParams(String platformType,  String configureFile) {
     MDC.put("baseTest PlatformType:: ", platformType);
-    MDC.put("baseTest PlatformType:: ", deviceType);
-    MDC.put("baseTest PlatformType:: ", configureFile);
+    MDC.put("baseTest configureFile:: ", configureFile);
 
   }
 

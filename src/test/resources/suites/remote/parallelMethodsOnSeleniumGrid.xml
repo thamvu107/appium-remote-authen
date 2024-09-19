@@ -7,7 +7,6 @@
 
     <test name="Authentication">
         <parameter name="platformType" value="ANDROID"/>
-        <parameter name="deviceType" value="EMULATOR"/>
         <classes>
             <class name="testcaseV9.authen.SignUpTest">
                 <methods>

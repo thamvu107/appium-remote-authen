@@ -15,27 +15,10 @@ public class ThreadSafeDriver {
 
   private static final ThreadLocal<AppiumDriver> threadDriver = new ThreadLocal<>();
 
-
-  public static void initDriver(PlatformType platformType, DeviceType deviceType, String configureFile) {
-
-    if (Objects.isNull(getDriver())) {
-      AppiumDriver driver = new DriverFactory(platformType, deviceType, configureFile).createDriver();
-
-      setDriver(driver);
-    }
-  }
-
-  public static AppiumDriver getDriver() {
-    return threadDriver.get();
-  }
-
-
-  public static void getDriver(PlatformType platformType, DeviceType deviceType, String configureFile) {
+  public static void getDriver(PlatformType platformType, String configureFile) {
 
     if (Objects.isNull(getDriver())) {
-      AppiumDriver driver = new DriverFactory(platformType, deviceType, configureFile).createDriver();
-
-      setDriver(driver);
+      initDriver(platformType, configureFile);
     } else {
       getDriver();
     }
@@ -45,6 +28,17 @@ public class ThreadSafeDriver {
     if (Objects.nonNull(driver)) {
       threadDriver.set(driver);
     }
+  }
+
+  private static void initDriver(PlatformType platformType, String configureFile) {
+
+    AppiumDriver driver = new DriverFactory(platformType, configureFile).createDriver();
+
+    setDriver(driver);
+  }
+
+  public static AppiumDriver getDriver() {
+    return threadDriver.get();
   }
 
 

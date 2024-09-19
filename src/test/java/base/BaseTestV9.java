@@ -31,22 +31,11 @@ public abstract class BaseTestV9 {
     MDC.put("logDir", "logs");
   }
 
-//  @BeforeTest
-//  @Parameters({"platformType", "deviceType", "configureFile"})
-//  public void beforeTest(String platformType, String deviceType, String configureFile, ITestContext context) {
-//
-//    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), DeviceType.valueOf(deviceType), configureFile);
-//
-//    context.getCurrentXmlTest().setName(
-//      context.getCurrentXmlTest().getName().concat(" - ").concat(platformType).concat(" - ").concat(deviceType).concat(" - ")
-//        .concat(getDeviceUdid()));
-//  }
-
   @BeforeMethod(alwaysRun = true)
-  @Parameters({"platformType", "deviceType", "configureFile"})
-  public void setUp(String platformType, String deviceType, String configureFile) {
+  @Parameters({"platformType",  "configureFile"})
+  public void setUp(String platformType,  String configureFile) {
 
-    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), DeviceType.valueOf(deviceType), configureFile);
+    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), configureFile);
   }
 
   @AfterMethod(alwaysRun = true)
@@ -55,10 +44,9 @@ public abstract class BaseTestV9 {
     ThreadSafeDriver.closeDriver();
   }
 
-  protected void setLogParams(String platformType, String deviceType, String configureFile) {
-    MDC.put("baseTest PlatformType:: ", platformType);
-    MDC.put("baseTest PlatformType:: ", deviceType);
-    MDC.put("baseTest PlatformType:: ", configureFile);
+  protected void setLogParams(String platformType,  String configureFile) {
+    MDC.put("baseTest PlatformType: ", platformType);
+    MDC.put("baseTest configureFile:: ", configureFile);
 
   }
 
@@ -81,7 +69,7 @@ public abstract class BaseTestV9 {
     lifecycle.updateTestCase(testResult -> {
 
       for (Parameter parameter : testResult.getParameters()) {
-        if (parameter.getName().equals("platformType") || parameter.getName().equals("deviceType")) {
+        if (parameter.getName().equals("platformType") ) {
           parameter.setMode(DEFAULT);
         } else {
           parameter.setMode(HIDDEN);
