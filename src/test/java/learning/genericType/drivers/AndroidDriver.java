@@ -5,7 +5,6 @@ import devices.android.AndroidPhysicalMobile;
 import devices.android.Emulator;
 import driver.AppiumDriverManager;
 import io.appium.java_client.android.options.UiAutomator2Options;
-
 import static driverFactory.capabilities.AndroidCapabilities.getEmulatorCaps;
 import static driverFactory.capabilities.AndroidCapabilities.getRealMobileCaps;
 

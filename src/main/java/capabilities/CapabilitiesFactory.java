@@ -7,15 +7,17 @@ import io.appium.java_client.remote.options.BaseOptions;
 import utils.propertyReader.PropertiesMap;
 
 public class CapabilitiesFactory {
+  private final PlatformType platformType;
   private final String configureFile;
   private final PropertiesMap propertiesMap;
 
-  public CapabilitiesFactory(String configureFile) {
+  public CapabilitiesFactory(PlatformType platformType, String configureFile) {
+    this.platformType = platformType;
     this.configureFile = configureFile;
     this.propertiesMap = new PropertiesMap(configureFile);
   }
 
-  public BaseOptions<?> getCaps(PlatformType platformType) {
+  public BaseOptions<?> getCaps() {
     return platformType == PlatformType.IOS ? getIOSCaps() : getAndroidCaps();
   }
 

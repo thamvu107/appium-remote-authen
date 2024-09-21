@@ -28,14 +28,14 @@ Learn Appium with Java
         - Ex: `deviceCapConfig/devicesOnLocal/android/mobile1.properties`
 
 - Run sequence methods suite (total time: `1m 42s`)
-    - `mvn test -Psequence-test-on-local-server -DisRemote=false`
+    - `mvn test -Psequence-test-on-local-server -DmobileRunMode=local`
     - <img src="resources/images/sequenceMethodsOnLocal.png" width="300" />
 - Run parallel methods `parallelMethodsOnSeleniumGrid.xml` suite on local (total time: `43s 499ms`)
-    - `mvn test -Pparallel-methods-on-local-server -DisRemote=false`
+    - `mvn test -Pparallel-methods-on-local-server -DmobileRunMode=local`
     - <img src="resources/images/parallelMethodsOnLocal.png" width="300" /> 
 
 - Run parallel classes  `parallelClassesOnSeleniumGrid.xml` suite:
-    - `mvn test -Pparallel-test-on-selenium-grid -DisRemote=false`
+    - `mvn test -Pparallel-test-on-selenium-grid -DmobileRunMode=local`
 
 ## Run Remote ( Selenium Grid 4)
 
@@ -78,11 +78,11 @@ Learn Appium with Java
             - <img src="resources/images/seleniumGrid.png" width="300" /> 
 
 - Run parallel methods `parallelMethodsOnSeleniumGrid.xml` suite ( total time: `28s 163ms`:
-    - `mvn test -Pparallel-methods-on-selenium-grid -DisRemote=true`
+    - `mvn test -Pparallel-methods-on-selenium-grid -DmobileRunMode=selenium_grid`
         - <img src="resources/images/parallelMethodsOnSeleniumGrid.png" width="300" />
 
 - Run parallel classes `parallelClassesOnSeleniumGrid.xml` suite:
-    - `mvn test -Pparallel-classes-on-selenium-grid -DisRemote=true`
+    - `mvn test -Pparallel-classes-on-selenium-grid -DmobileRunMode=selenium_grid`
 - Run parallel tests `parallelTestsOnSeleniumGrid.xml` suite:
-    - `mvn test -Pparallel-test-on-selenium-grid -DisRemote=true`
+    - `mvn test -Pparallel-test-on-selenium-grid -DmobileRunMode=selenium_grid`
 

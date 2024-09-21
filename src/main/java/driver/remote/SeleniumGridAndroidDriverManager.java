@@ -1,5 +1,6 @@
-package driver;
+package driver.remote;
 
+import driver.AppiumDriverManager;
 import io.appium.java_client.AppiumClientConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -8,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.SessionNotCreatedException;
 
 @Slf4j
-public class AndroidDriverManager extends AppiumDriverManager {
-  protected AndroidDriverManager(AppiumClientConfig appiumClientConfig, BaseOptions<?> caps) {
+public class SeleniumGridAndroidDriverManager extends AppiumDriverManager {
+  protected SeleniumGridAndroidDriverManager(AppiumClientConfig appiumClientConfig, BaseOptions<?> caps) {
     super(appiumClientConfig, caps);
   }
 

@@ -1,6 +1,10 @@
 package driver;
 
 import capabilities.CapabilitiesFactory;
+import config.SeleniumGridConfig;
+import config.factory.SeleniumGridConfigFactory;
+import driver.local.LocalDriverFactory;
+import driver.remote.SeleniumGridDriverFactory;
 import entity.ServerConfig;
 import enums.MobileRunModeType;
 import enums.PlatformType;
@@ -20,45 +24,27 @@ import java.util.Objects;
 @Slf4j
 public class DriverFactory {
 
-  private AppiumDriver driver;
   private MobileRunModeType mobileRunModeType;
   private final PlatformType platformType;
-  protected AppiumClientConfig appiumClientConfig;
 
   protected BaseOptions<?> caps;
 
-//  public DriverFactory(PlatformType platformType, String configureFile) {
-//    this.platformType = platformType;
-//    this.caps = new CapabilitiesFactory(configureFile).getCaps(platformType);
-//    ServerConfig serverConfig = new ServerConfigUtil().getServerConfig();
-//    this.appiumClientConfig = new AppiumClientConfigManager(serverConfig).getAppiumClientConfig();
-//  }
-
-  public DriverFactory(MobileRunModeType mobileRunModeType, PlatformType platformType, String configureFile) {
+  public DriverFactory(MobileRunModeType mobileRunModeType, PlatformType platformType,
+                       String configureFile) {
     this.mobileRunModeType = mobileRunModeType;
     this.platformType = platformType;
-    this.caps = new CapabilitiesFactory(configureFile).getCaps(platformType);
-    ServerConfig serverConfig = new ServerConfigUtil(mobileRunModeType).getServerConfig();
-    this.appiumClientConfig = new AppiumClientConfigManager(serverConfig).getAppiumClientConfig();
+    this.caps = new CapabilitiesFactory(platformType, configureFile).getCaps();
   }
 
   public AppiumDriver createDriver() {
-    if (Objects.isNull(driver)) {
-      switch (platformType) {
-        case ANDROID:
-          driver = new AndroidDriverManager(appiumClientConfig, caps).createDriver();
-          break;
-        case IOS:
-          driver = new IOSDriverManager(appiumClientConfig, caps).createDriver();
-          break;
-        default:
-          throw new PlatformNotSupportException("Platform " + platformType + " is not supported");
-      }
-
-      new WaitUtils(driver).setImplicitWait(0L);
+    switch (this.mobileRunModeType) {
+      case SELENIUM_GRID:
+        return new SeleniumGridDriverFactory(platformType, caps).createDriver();
+      case LOCAL:
+        return new LocalDriverFactory(platformType, caps).createDriver();
+      default:
+        throw new PlatformNotSupportException("Platform " + platformType + " is not supported");
     }
-
-    return driver;
   }
 
 }

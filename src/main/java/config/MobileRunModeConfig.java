@@ -1,9 +1,10 @@
 package config;
 
-import config.converters.MobileRunModeConverter;
+import config.converters.StringToMobileRunModeConverter;
 import enums.MobileRunModeType;
 import org.aeonbits.owner.Config;
 
+@Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
   "system:properties",
   "system:env",
@@ -11,6 +12,6 @@ import org.aeonbits.owner.Config;
 })
 public interface MobileRunModeConfig extends Config {
   @Key("mobileRunMode")
-  @ConverterClass(MobileRunModeConverter.class)
+  @ConverterClass(StringToMobileRunModeConverter.class)
   MobileRunModeType getMobileRunMode();
 }

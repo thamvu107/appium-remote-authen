@@ -3,10 +3,9 @@ package config.factory;
 import config.MobileRunModeConfig;
 import org.aeonbits.owner.ConfigCache;
 
-public class ConfigFactory {
+public class MobileRunModeConfigFactory {
 
-  private ConfigFactory() {
-
+  private MobileRunModeConfigFactory() {
   }
 
   public static MobileRunModeConfig getConfig() {
