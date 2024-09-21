@@ -10,15 +10,17 @@ import java.nio.file.Path;
 
 @Slf4j
 public class ServerConfigUtil {
-  private MobileRunModeType mobileRunModeType;;
+  private MobileRunModeType mobileRunModeType;
+  ;
+
   public ServerConfigUtil(MobileRunModeType mobileRunModeType) {
     this.mobileRunModeType = mobileRunModeType;
   }
 
-  public ServerConfig getServerConfig() {
+  public  ServerConfig getServerConfig(MobileRunModeType mobileRunModeType) {
     Path serverConfigurePath;
     switch (mobileRunModeType) {
-      case REMOTE:
+      case SELENIUM_GRID:
         serverConfigurePath = Path.of(ServerConfigPathConstants.REMOTE_SERVER_CONFIG_JSON);
         break;
       case LOCAL:

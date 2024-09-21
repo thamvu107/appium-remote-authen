@@ -1,31 +1,41 @@
 package utils;
 
+import config.LocalConfig;
+import config.SeleniumGridConfig;
+import config.factory.LocalConfigFactory;
+import config.factory.SeleniumGridConfigFactory;
 import entity.ServerConfig;
 import entity.authen.RemoteServerAuthentication;
+import enums.MobileRunModeType;
 import io.appium.java_client.AppiumClientConfig;
 import org.openqa.selenium.UsernameAndPassword;
 
+import java.net.URL;
+
 public class AppiumClientConfigManager {
-  private ServerConfig serverConfig;
-  public AppiumClientConfigManager(ServerConfig serverConfig) {
-    this.serverConfig = serverConfig;
+  private AppiumClientConfigManager() {
   }
 
-  public AppiumClientConfig getAppiumClientConfig() {
-    boolean isAuthenticationRequired = serverConfig.isAuthenticationRequired();
+  public static AppiumClientConfig getLocalConfig(LocalConfig localConfig) {
 
-    return isAuthenticationRequired ? getAppiumClientConfigAuthentication(serverConfig) :
-      getAppiumClientConfigNoneAuthentication(serverConfig);
+    return AppiumClientConfig.defaultConfig().baseUrl(localConfig.getUrl());
   }
 
-  private  AppiumClientConfig getAppiumClientConfigNoneAuthentication(ServerConfig serverConfig) {
-    return AppiumClientConfig.defaultConfig().baseUrl(serverConfig.getServerURL());
+  public static AppiumClientConfig getSeleniumGridConfig( SeleniumGridConfig seleniumGridConfig) {
+    boolean isAuthenticationRequired = seleniumGridConfig.isAuthenticationRequired();
+
+    return isAuthenticationRequired ? getAuthenticatedSeleniumGridConfig(seleniumGridConfig) :
+      getNonAuthenticatedSeleniumGridConfig(seleniumGridConfig);
   }
 
-  private  AppiumClientConfig getAppiumClientConfigAuthentication(ServerConfig serverConfig) {
+    private static  AppiumClientConfig getNonAuthenticatedSeleniumGridConfig(SeleniumGridConfig seleniumGridConfig) {
+    return AppiumClientConfig.defaultConfig().baseUrl(seleniumGridConfig.getUrl());
+  }
+
+  private static  AppiumClientConfig getAuthenticatedSeleniumGridConfig(SeleniumGridConfig seleniumGridConfig) {
     RemoteServerAuthentication auth = new RemoteServerAuthenticationUtil().getRemoteServerAuthentication();
 
-    return AppiumClientConfig.defaultConfig().baseUrl(serverConfig.getServerURL())
+    return AppiumClientConfig.defaultConfig().baseUrl(seleniumGridConfig.getUrl())
       .authenticateAs(new UsernameAndPassword(auth.getUsername(), auth.getPassword()));
   }
 

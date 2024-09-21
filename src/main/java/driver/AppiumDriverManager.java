@@ -5,14 +5,16 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.options.BaseOptions;
 import lombok.extern.slf4j.Slf4j;
 
+import java.net.URL;
+
 @Slf4j
 public abstract class AppiumDriverManager {
   protected AppiumClientConfig appiumClientConfig;
   protected BaseOptions<?> caps;
 
   protected AppiumDriverManager( AppiumClientConfig appiumClientConfig,  BaseOptions<?> caps) {
-    this.caps = caps;
     this.appiumClientConfig = appiumClientConfig;
+    this.caps = caps;
   }
 
   public abstract AppiumDriver createDriver();

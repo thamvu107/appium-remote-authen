@@ -1,12 +1,12 @@
 package driver;
 
-import enums.DeviceType;
+import enums.MobileRunModeType;
 import enums.PlatformType;
 import io.appium.java_client.AppiumDriver;
 
 import java.util.Objects;
 
-import static config.factory.ConfigFactory.getConfig;
+import static config.factory.MobileRunModeConfigFactory.getConfig;
 
 
 public class ThreadSafeDriver {
@@ -20,7 +20,7 @@ public class ThreadSafeDriver {
   public static void getDriver(PlatformType platformType, String configureFile) {
 
     if (Objects.isNull(getDriver())) {
-      initDriver(platformType, configureFile);
+      initDriver(getConfig().getMobileRunMode(), platformType, configureFile);
     } else {
       getDriver();
     }
@@ -32,10 +32,10 @@ public class ThreadSafeDriver {
     }
   }
 
-  private static void initDriver(PlatformType platformType, String configureFile) {
+  private static void initDriver(MobileRunModeType mobileRunModeType, PlatformType platformType, String configureFile) {
 
-//    AppiumDriver driver = new DriverFactory(platformType, configureFile).createDriver();
-    AppiumDriver driver = new DriverFactory(getConfig().getMobileRunMode(), platformType, configureFile).createDriver();
+//    AppiumDriver driver = new DriverFactory(getConfig().getMobileRunMode(), platformType, configureFile).createDriver();
+    AppiumDriver driver = new DriverFactory(mobileRunModeType, platformType, configureFile).createDriver();
 
     setDriver(driver);
   }

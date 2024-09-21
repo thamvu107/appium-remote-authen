@@ -1,5 +1,5 @@
 package enums;
 
 public enum MobileRunModeType {
-  LOCAL, REMOTE
+  LOCAL,  SELENIUM_GRID
 }
