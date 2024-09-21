@@ -43,4 +43,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-src/test/resources/testData/jsonFiles/serverConfigure/Authentication.json
+!**/src/test/resources/testData/jsonFiles/serverConfigure/Authentication.json
+!**/src/test/resources/seleniumGridAuthen.properties
