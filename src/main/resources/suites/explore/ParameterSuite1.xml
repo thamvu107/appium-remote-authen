@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- BeforeSuite Hook -->
+<suite name="Basic Suite">
+    <!-- BeforeTest Hook -->
+    <test name="SignIn">
+        <parameter name="email" value="${email}"/>
+        <parameter name="password" value="${password}"/>
+        <classes>
+            <!-- BeforeClass Hook -->
+            <!-- BeforeMethod Hook -->
+            <class name="learning.parameters.SignInTest"/>
+            <!-- AfterMethod Hook -->
+            <!-- AfterClass Hook -->
+        </classes>
+    </test>
+    <!--  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suites/explore/ParameterSuite1.xml -Demail="tham.vu@go1.com" -Dpassword="12345678910"
+-->
+</suite>

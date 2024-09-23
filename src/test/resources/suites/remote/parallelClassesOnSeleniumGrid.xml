@@ -4,23 +4,23 @@
     <test name="Parallel classes">
         <parameter name="platformType" value="ANDROID"/>
         <classes>
-            <class name="testcaseV9.authen.SignUpTest">
+            <class name="testV1.authen.SignUpTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile1.properties"/>
             </class>
 
-            <class name="testcaseV9.authen.SignInTest">
+            <class name="testV1.authen.SignInTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile2.properties"/>
             </class>
 
-            <class name="testcaseV9.authen.SignUpTest">
+            <class name="testV1.authen.SignUpTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile3.properties"/>
             </class>
 
-            <class name="testcaseV9.authen.SignInTest">
+            <class name="testV1.authen.SignInTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile4.properties"/>
             </class>
 
-            <class name="testcaseV9.authen.SignInTest">
+            <class name="testV1.authen.SignInTest">
                 <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile5.properties"/>
             </class>
         </classes>

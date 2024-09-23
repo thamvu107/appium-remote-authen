@@ -91,6 +91,7 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <!--            <scope>test</scope>&ndash;&gt;-->
+            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -132,7 +133,8 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
+            <scope>compile</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
@@ -150,7 +152,7 @@
         <!--            <version>${allure.version}</version>-->
         <!--        </dependency>-->
 
-<!--        https://mvnrepository.com/artifact/org.aeonbits.owner/owner-java8-->
+        <!--        https://mvnrepository.com/artifact/org.aeonbits.owner/owner-java8-->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner-java8</artifactId>

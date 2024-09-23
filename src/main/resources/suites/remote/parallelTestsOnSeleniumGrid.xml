@@ -1,0 +1,47 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel test" parallel="tests" verbose="2" preserve-order="false" thread-count="6">
+    <parameter name="platformType" value="ANDROID"/>
+    <test name="Mobile 1">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile1.properties"/>
+        <classes>
+            <class name="testV2.authen.SignUpTest"/>
+        </classes>
+    </test>
+
+    <test name="Mobile 2">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile2.properties"/>
+        <classes>
+            <class name="testV2.authen.SignInTest"/>
+        </classes>
+    </test>
+
+    <test name="Mobile 3">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile3.properties"/>
+        <classes>
+            <class name="testV2.authen.SignUpTest"/>
+        </classes>
+    </test>
+
+    <test name="Mobile 4">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile4.properties"/>
+        <classes>
+            <class name="testV2.authen.SignInTest"/>
+        </classes>
+    </test>
+
+    <test name="Mobile 5">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile5.properties"/>
+        <classes>
+            <class name="testV2.authen.SignUpTest"/>
+        </classes>
+    </test>
+
+    <test name="Mobile 6">
+        <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/android/mobile6.properties"/>
+        <classes>
+            <class name="testV2.authen.SignInTest"/>
+        </classes>
+    </test>
+
+</suite>
