@@ -1,0 +1,44 @@
+[
+  {
+    "id" : "Pixel_5_API_33_1",
+    "platformType" : "android",
+    "deviceType" : "emulator",
+    "deviceName" : "Pixel 5 API 33",
+    "configureFile" : "Pixel_5_API_33.properties"
+  },
+  {
+    "id" : "Pixel_4_API_33",
+    "platformType" : "android",
+    "deviceType" : "emulator",
+    "deviceName" : "Pixel 4 API 33",
+    "configureFile" : "Pixel_4_API_33.properties"
+  },
+  {
+    "id" : "192.168.1.13:5555",
+    "platformType" : "android",
+    "deviceType" : "realDevice",
+    "deviceName" : "physicalMobile",
+    "configureFile" : "physicalMobile.properties"
+  },
+  {
+    "id" : "192.168.1.14:5555",
+    "platformType" : "android",
+    "deviceType" : "realDevice",
+    "deviceName" : "Samsung_Galaxy_S8",
+    "configureFile" : "Samsung_Galaxy_S8.properties"
+  },
+  {
+    "id" : "R8KR5000D4V",
+    "platformType" : "ios",
+    "deviceType" : "realDevice",
+    "deviceName" : "iphone_11",
+    "configureFile" : "iphone_11.properties"
+  },
+  {
+    "id" : "R8KR5000D4CF",
+    "platformType" : "ios",
+    "deviceType" : "simulator",
+    "deviceName" : "iphone_11",
+    "configureFile" : "iphone_11.properties"
+  }
+]

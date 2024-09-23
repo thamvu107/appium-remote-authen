@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel test" parallel="classes" verbose="2" preserve-order="false" thread-count="5">
+    <test name="Parallel classes">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <classes>
+            <class name="testcaseV6.authen.SignUpTest">
+                <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile1.properties"/>
+            </class>
+
+            <class name="testcaseV6.authen.SignInTest">
+                <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile2.properties"/>
+            </class>
+        </classes>
+    </test>
+
+</suite>

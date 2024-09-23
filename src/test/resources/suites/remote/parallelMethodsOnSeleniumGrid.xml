@@ -8,7 +8,7 @@
     <test name="Authentication">
         <parameter name="platformType" value="ANDROID"/>
         <classes>
-            <class name="testcaseV9.authen.SignUpTest">
+            <class name="testV1.authen.SignUpTest">
                 <methods>
                     <include name="signUpWithCorrectCredentials">
                         <parameter name="configureFile"
@@ -28,7 +28,7 @@
                 </methods>
             </class>
 
-            <class name="testcaseV9.authen.SignInTest">
+            <class name="testV1.authen.SignInTest">
                 <methods>
                     <include name="loginWithCorrectCredential">
                         <parameter name="configureFile"

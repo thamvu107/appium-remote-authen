@@ -6,7 +6,7 @@ import io.appium.java_client.AppiumDriver;
 
 import java.util.Objects;
 
-import static config.factory.MobileRunModeConfigFactory.getConfig;
+import static config.factory.GeneralConfigFactory.getConfig;
 
 
 public class ThreadSafeDriver {

@@ -1,0 +1,61 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel test" parallel="tests" verbose="2" preserve-order="false" thread-count="5">
+    <test name="Mobile 1">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile1.properties"/>
+        <classes>
+            <class name="testcaseV3.authen.SignUpTest"/>
+            <class name="testcaseV3.authen.SignInTest"/>
+            <!--            <class name="testcaseV3.swipe.HorizontalSwipeTest"/>-->
+            <!--            <class name="testcaseV3.authen.ReportableTestStatus"/>-->
+        </classes>
+    </test>
+
+    <test name="Mobile 2">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile2.properties"/>
+        <classes>
+            <class name="testcaseV3.authen.SignUpTest"/>
+            <class name="testcaseV3.authen.SignInTest"/>
+            <!--            <class name="testcaseV3.multiApps.HandleMultiApps"/>-->
+            <!--            <class name="testcaseV3.swipe.HorizontalSwipeTest"/>-->
+        </classes>
+    </test>
+
+    <test name="Mobile 3">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile3.properties"/>
+        <classes>
+            <class name="testcaseV3.authen.SignUpTest"/>
+            <class name="testcaseV3.authen.SignInTest"/>
+            <!--                <class name="testcaseV3.multiApps.HandleMultiApps"/>-->
+        </classes>
+    </test>
+
+    <test name="Mobile 4">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile4.properties"/>
+        <classes>
+            <class name="testcaseV3.authen.SignUpTest"/>
+            <class name="testcaseV3.authen.SignInTest"/>
+            <!--                <class name="testcaseV3.multiApps.HandleMultiApps"/>-->
+        </classes>
+    </test>
+
+    <test name="Mobile 5">
+        <parameter name="platformType" value="ANDROID"/>
+        <parameter name="deviceType" value="EMULATOR"/>
+        <parameter name="configureFile" value="deviceCapConfig/android/emulators/mobile5.properties"/>
+        <classes>
+            <class name="testcaseV3.authen.SignUpTest"/>
+            <class name="testcaseV3.authen.SignInTest"/>
+            <!--                <class name="testcaseV3.multiApps.HandleMultiApps"/>-->
+        </classes>
+    </test>
+
+</suite>

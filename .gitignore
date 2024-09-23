@@ -8,6 +8,7 @@
 *.iml
 *.ipr
 target/
+test-output/
 
 ### Test results
 allure-*

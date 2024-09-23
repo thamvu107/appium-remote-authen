@@ -7,7 +7,7 @@
 
     <test name="SingIn">
         <classes>
-            <class name="testcaseV9.authen.SignInTest">
+            <class name="testV1.authen.SignInTest">
                 <methods>
                     <!--                    <include name="loginWithCorrectCredential">-->
                     <!--                        <parameter name="platformType" value="ANDROID"/>-->

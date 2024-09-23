@@ -9,7 +9,7 @@
         <parameter name="platformType" value="ANDROID"/>
         <parameter name="deviceType" value="EMULATOR"/>
         <classes>
-            <class name="testcaseV9.authen.SignUpTest">
+            <class name="testV1.authen.SignUpTest">
                 <methods>
                     <include name="signUpWithCorrectCredentials">
                         <parameter name="configureFile"
