@@ -33,10 +33,10 @@ public class AppiumClientConfigManager {
   }
 
   private static  AppiumClientConfig getAuthenticatedSeleniumGridConfig(SeleniumGridConfig seleniumGridConfig) {
-    RemoteServerAuthentication auth = new RemoteServerAuthenticationUtil().getRemoteServerAuthentication();
+//    RemoteServerAuthentication auth = new RemoteServerAuthenticationUtil().getRemoteServerAuthentication();
 
     return AppiumClientConfig.defaultConfig().baseUrl(seleniumGridConfig.getUrl())
-      .authenticateAs(new UsernameAndPassword(auth.getUsername(), auth.getPassword()));
+      .authenticateAs(new UsernameAndPassword(seleniumGridConfig.getUsername(), seleniumGridConfig.getPassword()));
   }
 
 }
