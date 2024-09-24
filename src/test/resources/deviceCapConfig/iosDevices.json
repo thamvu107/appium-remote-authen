@@ -1,16 +1,12 @@
 [
   {
-    "id" : "R8KR5000D4V",
-    "platformType" : "ios",
-    "deviceType" : "realDevice",
-    "deviceName" : "iphone_11",
-    "configureFile" : "iphone_11.properties"
+    "deviceName" : "iphone 11",
+    "platformVersion" : "9.0",
+    "configureFile" : "deviceCapConfig/devicesOnRemote/ios/mobile1.properties"
   },
   {
-    "id" : "R8KR5000D4CF",
-    "platformType" : "ios",
-    "deviceType" : "simulator",
-    "deviceName" : "iphone_11",
-    "configureFile" : "iphone_11.properties"
+    "deviceName" : "iphone 10",
+    "platformVersion" : "9.0",
+    "configureFile" : "deviceCapConfig/devicesOnRemote/ios/mobile2.properties"
   }
 ]
