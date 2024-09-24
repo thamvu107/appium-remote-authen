@@ -9,8 +9,8 @@ import java.net.URL;
 @Config.Sources({
   "system:properties",
   "system:env",
-  "file:${user.dir}/src/test/resources/seleniumGridRemote.properties",
-  "file:${user.dir}/src/test/resources/seleniumGridAuthen.properties"
+  "file:${user.dir}/src/main/resources/seleniumGridRemote.properties",
+  "file:${user.dir}/src/main/resources/seleniumGridAuthen.properties"
 })
 public interface SeleniumGridConfig extends Config {
   @Key("grid.url")

@@ -1,17 +1,12 @@
 [
   {
-    "id" : "Pixel_5_API_33_1",
-    "deviceType" : "emulator",
-    "configureFile" : "Pixel_5_API_33_1.properties"
+    "deviceName" : "Pixel 5 API 33",
+    "platformVersion" : "9.0",
+    "configureFile" : "deviceCapConfig/devicesOnRemote/android/mobile1.properties"
   },
   {
-    "id" : "192.168.1.14:5555",
-    "deviceType" : "physicalDevice",
-    "configureFile" : "Samsung_Galaxy_S8.properties"
-  },
-  {
-    "id" : "192.168.1.14:5555",
-    "deviceType" : "realDevice",
-    "configureFile" : "Samsung_Galaxy_S8.properties"
+    "deviceName" : "Pixel 5 API 33 Copy1",
+    "platformVersion" : "9.0",
+    "configureFile" : "deviceCapConfig/devicesOnRemote/android/mobile2.properties"
   }
 ]
