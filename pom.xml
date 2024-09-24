@@ -28,8 +28,8 @@
         <slf4j.version>2.0.12</slf4j.version>
         <owner.version>1.0.12</owner.version>
         <commons.io.version>2.16.1</commons.io.version>
-        <allure.version>2.27.0</allure.version>
-        <allure-maven.version>2.12.0</allure-maven.version>
+        <allure.version>2.29.0</allure.version>
+        <allure-maven.version>2.14.0</allure-maven.version>
         <parallelMethodsOnSeleniumGrid>parallelMethodsOnSeleniumGrid</parallelMethodsOnSeleniumGrid>
         <parallelClassesOnSeleniumGrid>parallelClassesOnSeleniumGrid</parallelClassesOnSeleniumGrid>
         <parallelTestsOnSeleniumGrid>parallelTestsOnSeleniumGrid</parallelTestsOnSeleniumGrid>
@@ -82,7 +82,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
-            <!--                    <scope>compile</scope>-->
+            <scope>compile</scope>
         </dependency>
 
         <!-- https://mvnreposito9ry.com/artifact/org.testng/testng-->
@@ -133,7 +133,7 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-<!--            <scope>test</scope>-->
+            <!--            <scope>test</scope>-->
             <scope>compile</scope>
         </dependency>
 

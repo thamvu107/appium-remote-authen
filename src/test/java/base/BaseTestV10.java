@@ -35,8 +35,9 @@ public abstract class BaseTestV10 {
   @BeforeTest
   @Parameters({"platformType", "configureFile"})
   public void beforeTest(String platformType, String configureFile, ITestContext context) {
+    PlatformType platform = PlatformType.fromString(platformType);
 
-    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), configureFile);
+    ThreadSafeDriver.getDriver(platform, configureFile);
 
     context.getCurrentXmlTest().setName(
       context.getCurrentXmlTest().getName().concat(" - ").concat(platformType).concat(" - ")
@@ -45,9 +46,11 @@ public abstract class BaseTestV10 {
 
   @BeforeMethod(alwaysRun = true)
   @Parameters({"platformType", "configureFile"})
-  public void setUp(String platformType,  String configureFile) {
+  public void setUp(String platformType, String configureFile) {
+    PlatformType platform = PlatformType.fromString(platformType);
 
-    ThreadSafeDriver.getDriver(PlatformType.valueOf(platformType), configureFile);
+
+    ThreadSafeDriver.getDriver(platform, configureFile);
   }
 
   @AfterMethod(alwaysRun = true)
@@ -58,7 +61,7 @@ public abstract class BaseTestV10 {
     ThreadSafeDriver.closeDriver();
   }
 
-  protected void setLogParams(String platformType,  String configureFile) {
+  protected void setLogParams(String platformType, String configureFile) {
     MDC.put("baseTest PlatformType:: ", platformType);
     MDC.put("baseTest configureFile:: ", configureFile);
 
