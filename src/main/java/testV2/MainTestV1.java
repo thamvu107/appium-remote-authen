@@ -43,7 +43,10 @@ public class MainTestV1 {
     // Build dynamic test suite
     TestNG testNG = new TestNG();
     XmlSuite suite = new XmlSuite();
-    suite.setName("TestV2");
+    suite.setName("Dynamic Test Suite");
+    Map<String, String> suiteParameters = new HashMap<>();
+    suiteParameters.put("platformType", platformType.getPlatformName());
+    suite.setParameters(suiteParameters);
 
 
     List<XmlTest> allTest = new ArrayList<>();
@@ -56,7 +59,6 @@ public class MainTestV1 {
         xmlClasses.add(new XmlClass(testClass.getName()));
       }
       test.setXmlClasses(xmlClasses);
-      test.addParameter("platformType", platformType.getPlatformName());
       test.addParameter("configureFile", deviceUnderTest.getConfigureFile());
       allTest.add(test);
     }

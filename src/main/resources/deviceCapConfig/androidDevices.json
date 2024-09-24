@@ -2,7 +2,7 @@
   {
     "deviceName" : "Pixel 5 API 33",
     "platformVersion" : "9.0",
-    "configureFile" : "deviceCapConfig/devicesOnRemote/android/mobile.properties"
+    "configureFile" : "deviceCapConfig/devicesOnRemote/android/mobile1.properties"
   },
   {
     "deviceName" : "Pixel 5 API 33 Copy1",

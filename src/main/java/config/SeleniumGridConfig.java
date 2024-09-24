@@ -7,6 +7,8 @@ import java.net.URL;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
+  "system:properties",
+  "system:env",
   "file:${user.dir}/src/test/resources/seleniumGridRemote.properties",
   "file:${user.dir}/src/test/resources/seleniumGridAuthen.properties"
 })
