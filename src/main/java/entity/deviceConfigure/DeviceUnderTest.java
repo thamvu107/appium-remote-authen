@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Getter
 @RequiredArgsConstructor
-@ToString
 public class DeviceUnderTest {
   @NonNull
   private final String id;

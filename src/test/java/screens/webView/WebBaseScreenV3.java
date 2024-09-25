@@ -29,8 +29,6 @@ public class WebBaseScreenV3 {
   protected AppiumDriver driver;
   protected ContextSwitching contextSwitching;
 
-
-  @Getter
   protected BottomNavComponent bottomNavComponent;
 
   protected ElementUtils elementUtils;
