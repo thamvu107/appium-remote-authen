@@ -85,4 +85,25 @@ Learn Appium with Java
     - `mvn test -Pparallel-classes-on-selenium-grid -DmobileRunMode=selenium_grid`
 - Run parallel tests `parallelTestsOnSeleniumGrid.xml` suite:
     - `mvn test -Pparallel-test-on-selenium-grid -DmobileRunMode=selenium_grid`
+- Set up run on Jenskins
+  - Prepare env for the jenkins executor:
+      - Java JDK installed
+      - Maven
+          -  Go to **Manage jenkins** > **Tools** (http://localhost:8080/manage/configureTools/)
+          - Add Maven name
+          - Add Maven_Home
+              - If Maven already installed then run command : `mvn -v` to get MAVEN_HOME
+      - Allure report plugin
+          - Go to **Plugin** search Allure.
+          - Select allure plugin then apply
+          - Go to Manage Jenkins > Tools
+              - Add Allure command line:
+                  - Name
+                  - Install automatically ( select version)
+          - Parameter Trigger plugin
+      - download jenkins (LTS)
+        - Command start Jenkins: 
+          - `java -jar path/jenkins.war`
+        - Configure Jenkins
+  - <img src="resources/images/jenkins.png" width="300" /> 
 
