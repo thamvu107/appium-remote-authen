@@ -16,7 +16,8 @@
         <appium.version>9.2.2</appium.version>
         <seleniumhq.version>4.19.0</seleniumhq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+        <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <aspectj.version>1.9.22.1</aspectj.version>
         <allure-maven-compiler-plugin.version>2.13.0</allure-maven-compiler-plugin.version>
@@ -196,18 +197,11 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/suites/remote/${parallelMethodsOnSeleniumGrid}.xml
+                                <suiteXmlFile>src/main/resources/suites/remote/${parallelMethodsOnSeleniumGrid}.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
-                        <!--                        <executions>-->
-                        <!--                            <execution>-->
-                        <!--                                <phase>verify</phase>-->
-                        <!--                                <goals>-->
-                        <!--                                    <goal>report</goal>-->
-                        <!--                                </goals>-->
-                        <!--                            </execution>-->
-                        <!--                        </executions>-->
+
                     </plugin>
                 </plugins>
             </build>
@@ -249,7 +243,7 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/suites/remote/${parallelTestsOnSeleniumGrid}.xml
+                                <suiteXmlFile>src/main/resources/suites/remote/${parallelTestsOnSeleniumGrid}.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
@@ -276,7 +270,7 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/suites/local/${parallelMethodsOnLocalServer}.xml
+                                <suiteXmlFile>src/main/resources/suites/local/${parallelMethodsOnLocalServer}.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
@@ -303,7 +297,7 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/suites/local/${sequenceTestOnLocalServer}.xml
+                                <suiteXmlFile>src/main/resources/suites/local/${sequenceTestOnLocalServer}.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
@@ -325,6 +319,7 @@
     <build>
         <!--        <pluginManagement>-->
         <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -335,7 +330,7 @@
                     </argLine>
 
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suites/${parallelMethodsOnLocalServer}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/suites/${parallelTestsOnSeleniumGrid}.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
                     <testFailureIgnore>false</testFailureIgnore>
@@ -349,24 +344,39 @@
                 </dependencies>
             </plugin>
 
-
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-surefire-plugin</artifactId>-->
-            <!--                <version>${maven-surefire-plugin.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <argLine>-->
-            <!--                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
-            <!--                    </argLine>-->
-            <!--                </configuration>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>org.aspectj</groupId>-->
-            <!--                        <artifactId>aspectjweaver</artifactId>-->
-            <!--                        <version>${aspectj.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--            </plugin>-->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>fat-tests</shadedClassifierName>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>testV2.MainTestV1</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>io.qameta.allure</groupId>

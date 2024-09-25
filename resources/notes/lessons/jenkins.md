@@ -20,3 +20,14 @@
 - download jenkins (LTS)
 - `java -jar path/jenkins.war`
 
+- Build one run every where
+ - POM
+   - fat-test
+   - Update main entry
+      - ``` <transformers>
+                                   <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                       <mainClass>testV2.MainTestV1</mainClass>
+                                   </transformer>
+                               </transformers>```
+   - Command to build:
+   - `mvn clean package -DskipTests`
