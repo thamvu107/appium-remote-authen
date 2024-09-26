@@ -11,65 +11,51 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static constants.filePaths.IBasePaths.TEST_RESOURCES_PATH;
+
 public class MainTest {
   public static void main(String[] args) throws IOException {
     // Get all test classes
-    final ClassLoader loader = Thread.currentThread().getContextClassLoader();
-    List<Class<?>> testClasses = new ArrayList<>();
-    for (ClassPath.ClassInfo info : ClassPath.from(loader).getAllClasses()) {
-      String classInfoName = info.getName();
-      boolean startsWithTestDot = classInfoName.startsWith("testV2.");
-      boolean isMainTestClass = classInfoName.startsWith("testV2.MainTest");
-      if (startsWithTestDot && !isMainTestClass) {
-        testClasses.add(info.load());
-      }
-    }
+    List<Class<?>> testClasses = getTestClasses();
 
     // Get Platform
-    PlatformType platformType = GeneralConfigFactory.getConfig().getPlatformType();
-    if (platformType == null) {
-      throw new RuntimeException("Platform type not found");
-    }
-
+    PlatformType platformType = getPlatformType();
 
     // Devices under test
-    List<DeviceUnderTest> iosDevices = IosDeviceUnderTestData.readDeviceConfigsFromExternalSource();
-    List<DeviceUnderTest> androidDevices = AndroidDeviceUnderTestData.readDeviceConfigsFromExternalSource();
-    List<DeviceUnderTest> deviceList = platformType == PlatformType.IOS ? iosDevices : androidDevices;
+    List<DeviceUnderTest> deviceList = getDeviceUnderTests(platformType);
 
     // Assign devices to test classes
-    int testNumEachDevice = testClasses.size() / deviceList.size();
-    Map<DeviceUnderTest, List<Class<?>>> desiredCap = new HashMap<>();
-    for (int deviceIndex = 0; deviceIndex < deviceList.size(); deviceIndex++) {
-      int startIndex = deviceIndex * testNumEachDevice;
-      boolean isLastDevice = deviceIndex == deviceList.size() - 1;
-      int endIndex = isLastDevice ? testClasses.size() : (startIndex + testNumEachDevice);
-      List<Class<?>> subTestList = testClasses.subList(startIndex, endIndex);
-      desiredCap.put(deviceList.get(deviceIndex), subTestList);
-    }
+    Map<DeviceUnderTest, List<Class<?>>> desiredCap = assignTestClassesToDevices(testClasses, deviceList);
 
     // Build dynamic test suite
     TestNG testNG = new TestNG();
     XmlSuite suite = new XmlSuite();
-    suite.setName("TestV2");
+    suite.setName("Dynamic Test Suite");
+    Map<String, String> suiteParameters = new HashMap<>();
+    suiteParameters.put("platformType", platformType.getPlatformName());
+    suite.setParameters(suiteParameters);
+
 
     List<XmlTest> allTest = new ArrayList<>();
     for (DeviceUnderTest deviceUnderTest : desiredCap.keySet()) {
       XmlTest test = new XmlTest(suite);
-      test.setName(deviceUnderTest.getDeviceName() + " " + deviceUnderTest.getPlatformVersion());
+      test.setName(deviceUnderTest.getDeviceName() + " - " + deviceUnderTest.getPlatformVersion());
       List<XmlClass> xmlClasses = new ArrayList<>();
       List<Class<?>> testClassesForDevice = desiredCap.get(deviceUnderTest);
       for (Class<?> testClass : testClassesForDevice) {
         xmlClasses.add(new XmlClass(testClass.getName()));
       }
       test.setXmlClasses(xmlClasses);
-      test.addParameter("platformType", platformType.getPlatformName());
       test.addParameter("configureFile", deviceUnderTest.getConfigureFile());
       allTest.add(test);
     }
@@ -78,7 +64,9 @@ public class MainTest {
     suite.setParallel(XmlSuite.ParallelMode.TESTS);
     suite.setThreadCount(6);
 
-    System.out.println("suite.toXml() " + suite.toXml());
+//    System.out.println("suite.toXml() " + suite.toXml());
+    writeXmlFile(platformType, suite);
+
     // Add TestSuite into Suite list
     List<XmlSuite> suites = new ArrayList<>();
     suites.add(suite);
@@ -87,4 +75,74 @@ public class MainTest {
     testNG.setXmlSuites(suites);
     testNG.run();
   }
+
+  private static void writeXmlFile(PlatformType platformType, XmlSuite suite) {
+
+    String folderPath = TEST_RESOURCES_PATH + "suites";
+    String fileName = "testNG-" + platformType.getPlatformName() + ".xml";
+
+    // Create the directory if it doesn't exist
+    File directory = new File(folderPath);
+    if (!directory.exists()) {
+      directory.mkdirs();
+    }
+
+    // Write the XML suite to a file
+    Path filePath = Paths.get(folderPath, fileName);
+    try (FileWriter writer = new FileWriter(filePath.toFile())) {
+      writer.write(suite.toXml());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static Map<DeviceUnderTest, List<Class<?>>> assignTestClassesToDevices(List<Class<?>> testClasses,
+                                                                                 List<DeviceUnderTest> deviceList) {
+    int testNumEachDevice = testClasses.size() / deviceList.size();
+    System.out.println("testNumEachDevice: " +testNumEachDevice);
+
+    Map<DeviceUnderTest, List<Class<?>>> map = new HashMap<>();
+    for (int deviceIndex = 0; deviceIndex < deviceList.size(); deviceIndex++) {
+      int startIndex = deviceIndex * testNumEachDevice;
+      boolean isLastDevice = deviceIndex == deviceList.size() - 1;
+      int endIndex = isLastDevice ? testClasses.size() : (startIndex + testNumEachDevice);
+      List<Class<?>> subTestList = testClasses.subList(startIndex, endIndex);
+      map.put(deviceList.get(deviceIndex), subTestList);
+    }
+    return map;
+  }
+
+  private static List<DeviceUnderTest> getDeviceUnderTests(PlatformType platformType) {
+    List<DeviceUnderTest> iosDevices = IosDeviceUnderTestData.readDeviceConfigsFromExternalSource();
+    List<DeviceUnderTest> androidDevices = AndroidDeviceUnderTestData.readDeviceConfigsFromExternalSource();
+    List<DeviceUnderTest> deviceList = platformType == PlatformType.IOS ? iosDevices : androidDevices;
+    return deviceList;
+  }
+
+  private static PlatformType getPlatformType() {
+    PlatformType platformType = GeneralConfigFactory.getConfig().getPlatformType();
+    if (platformType == null) {
+      throw new RuntimeException("Platform type not found");
+    }
+    return platformType;
+  }
+
+  private static List<Class<?>> getTestClasses() throws IOException {
+    final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    List<Class<?>> testClasses = new ArrayList<>();
+    for (ClassPath.ClassInfo info : ClassPath.from(loader).getAllClasses()) {
+      String classInfoName = info.getName();
+//      System.out.println("classInfoName " + classInfoName);
+      boolean startWithTestDot = classInfoName.startsWith("testV2.");
+      boolean isMainTestClass = classInfoName.startsWith("testV2.MainTest");
+      if (startWithTestDot && !isMainTestClass) {
+        testClasses.add(info.load());
+      }
+    }
+
+//    System.out.println("Total test classes: " + testClasses.size());
+
+    return testClasses;
+  }
+
 }
