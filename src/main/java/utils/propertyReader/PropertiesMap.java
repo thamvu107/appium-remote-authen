@@ -2,8 +2,13 @@ package utils.propertyReader;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
@@ -81,6 +86,18 @@ public class PropertiesMap {
     if (inputStream == null) {
       log.atError().log("Property file not found in the classpath");
       throw new IllegalArgumentException("Property file not found in the classpath");
+    }
+  }
+
+  private static Reader getReader(Path absoluteFilePath, Path relativeFilePath) throws IOException {
+    if (Files.exists(absoluteFilePath)) {
+      return Files.newBufferedReader(absoluteFilePath);
+    } else {
+      InputStream inputStream = PropertiesMap.class.getResourceAsStream(relativeFilePath.toString());
+      if (inputStream == null) {
+        throw new FileNotFoundException("File not found in resources: " + relativeFilePath.toString());
+      }
+      return new InputStreamReader(inputStream);
     }
   }
 }

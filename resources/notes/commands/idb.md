@@ -1,3 +1,13 @@
+- Prepare env:
+  - https://github.com/appium/appium-idb?tab=readme-ov-file
+  - `brew tap facebook/fb`
+  - `brew install idb-companion`
+  - `pipx install fb-idb`
+    - python3 --version
+    - pip3 --version
+    - which python3
+    - which pip3
+
 - List availables devices
     - `idb list-targets`
 - Boot a simulator

@@ -30,8 +30,9 @@ public class CapabilitiesFactory {
   }
 
   public  XCUITestOptions getIOSCaps() {
-    boolean isRealDevice = propertiesMap.getBooleanProperty("isRealDevice");
+
     IOSCapabilitiesManager iosCaps = new IOSCapabilitiesManager(configureFile);
+    boolean isRealDevice = propertiesMap.getBooleanProperty("isRealDevice");
 
     return isRealDevice ? iosCaps.getRealIosMobileCaps(propertiesMap) : iosCaps.getSimulatorCaps(propertiesMap);
   }
