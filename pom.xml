@@ -36,6 +36,7 @@
         <parallelTestsOnSeleniumGrid>parallelTestsOnSeleniumGrid</parallelTestsOnSeleniumGrid>
         <parallelMethodsOnLocalServer>parallelMethodsOnLocalServer</parallelMethodsOnLocalServer>
         <sequenceTestOnLocalServer>sequenceTestOnLocalServer</sequenceTestOnLocalServer>
+        <testFileName>testNG-android</testFileName>
     </properties>
 
     <!--    <dependencyManagement>-->
@@ -211,7 +212,7 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/suites/remote/${parallelClassesOnSeleniumGrid}.xml
+                                <suiteXmlFile>src/main/resources/suites/remote/${parallelClassesOnSeleniumGrid}.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
@@ -325,7 +326,7 @@
                     </argLine>
 
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/main/resources/suites/${parallelTestsOnSeleniumGrid}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/suites/${testFileName}.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
                     <testFailureIgnore>false</testFailureIgnore>
@@ -365,7 +366,7 @@
                             <shadedClassifierName>fat-tests</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>testV2.MainTestV1</mainClass>
+                                    <mainClass>testV2.MainTest</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

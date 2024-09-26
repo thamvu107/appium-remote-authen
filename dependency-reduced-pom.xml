@@ -19,7 +19,7 @@
         <configuration>
           <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
           <suiteXmlFiles>
-            <suiteXmlFile>src/main/resources/suites/${parallelTestsOnSeleniumGrid}.xml</suiteXmlFile>
+            <suiteXmlFile>src/main/resources/suites/${testFileName}.xml</suiteXmlFile>
           </suiteXmlFiles>
           <testFailureIgnore>false</testFailureIgnore>
         </configuration>
@@ -48,7 +48,7 @@
               <shadedClassifierName>fat-tests</shadedClassifierName>
               <transformers>
                 <transformer>
-                  <mainClass>testV2.MainTestV1</mainClass>
+                  <mainClass>testV2.MainTest</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -110,7 +110,7 @@
             </executions>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>src/test/resources/suites/remote/${parallelClassesOnSeleniumGrid}.xml</suiteXmlFile>
+                <suiteXmlFile>src/main/resources/suites/remote/${parallelClassesOnSeleniumGrid}.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
@@ -218,6 +218,7 @@
     <allure-maven-compiler-plugin.version>2.13.0</allure-maven-compiler-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <aspectj.version>1.9.22.1</aspectj.version>
+    <testFileName>testNG-android</testFileName>
     <parallelMethodsOnSeleniumGrid>parallelMethodsOnSeleniumGrid</parallelMethodsOnSeleniumGrid>
     <seleniumhq.version>4.19.0</seleniumhq.version>
     <appium.version>9.2.2</appium.version>
