@@ -1,0 +1,8 @@
+- register node:
+  - Check device info to update deviceCapsConfigure file
+    - uidi
+    - platform version
+    - ...
+  - Check Ip of appium server replay
+  - Check ip of selenium hub
+- 

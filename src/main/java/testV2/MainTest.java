@@ -62,7 +62,7 @@ public class MainTest {
 
     suite.setTests(allTest);
     suite.setParallel(XmlSuite.ParallelMode.TESTS);
-    suite.setThreadCount(6);
+    suite.setThreadCount(deviceList.size());
 
     System.out.println("suite.toXml() " + suite.toXml());
     writeXmlFile(platformType, suite);
