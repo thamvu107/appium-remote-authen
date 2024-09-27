@@ -1,28 +1,10 @@
-echo "Hello Appium"
-
-# Stop any running Appium servers
-pkill -9 -f appium
+echo "Register Node"
 
 # Define the file path
 set FILE_PATH $PWD/selenium-grid
 set CONFIG_FILE_PATH "$FILE_PATH"/config
 
 echo $FILE_PATH
-
-# Start the Appium servers using AppleScript
-set appium1 "appium server --config '$CONFIG_FILE_PATH/appium1.yml'"
-set appium2 "appium server --config '$CONFIG_FILE_PATH/appium2.yml'"
-
-# Run Appium servers in separate Terminal windows
-osascript -e "
-tell application \"Terminal\"
-    do script \"$appium1\"
-end tell" &
-
-osascript -e "
-tell application \"Terminal\"
-    do script \"$appium2\"
-end tell" &
 
 
 # Start the Selenium Grid nodes

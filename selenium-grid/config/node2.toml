@@ -1,14 +1,14 @@
 #node-emulator2.toml
 [server]
-port = 5222
+port = 5544
 
 [node]
 detect-drivers = false
 
 [relay]
-url = "http://192.168.1.4:4727"
+url = "http://192.168.1.4:4725"
 status-endpoint = "/status"
 protocol-version = "HTTP/1.1"
 configs = [
-    "1", "{\"platformName\": \"IOS\", \"appium:udid\": \"AED6F7E6-1B8A-48D5-B25F-F750EBCB79DB\", \"appium:automationName\": \"xcuitest\"}"
+    "1", "{\"platformName\": \"iOS\", \"appium:udid\": \"AED6F7E6-1B8A-48D5-B25F-F750EBCB79DB\", \"appium:automationName\": \"XCUITest\"}"
 ]

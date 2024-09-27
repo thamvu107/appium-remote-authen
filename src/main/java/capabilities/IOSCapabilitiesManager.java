@@ -20,7 +20,6 @@ public class IOSCapabilitiesManager {
 //    PropertiesUtils deviceProps = new PropertiesUtils(deviceCapConfig);
 
     XCUITestOptions caps = new XCUITestOptions()
-      .setPlatformVersion(deviceProps.getProperty("platformVersion"))
       .setUdid(deviceProps.getProperty("udid"))
       .setWdaLocalPort(deviceProps.getIntProperty("wdaLocalPort"))
       .setMjpegServerPort(deviceProps.getIntProperty("mjpegServerPort"))
@@ -47,7 +46,6 @@ public class IOSCapabilitiesManager {
 
   public XCUITestOptions getRealIosMobileCaps(PropertiesMap deviceProps) {
     XCUITestOptions caps = new XCUITestOptions()
-      .setPlatformVersion(deviceProps.getProperty("platformVersion"))
       .setUdid(deviceProps.getProperty("udid"))
       .setWdaLocalPort(deviceProps.getIntProperty("wdaLocalPort"))
       .setMjpegServerPort(deviceProps.getIntProperty("mjpegServerPort"))
