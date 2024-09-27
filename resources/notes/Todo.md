@@ -15,3 +15,4 @@
   // In case the component is not on screen(for Android) need to swipe the screen
   // TODO: Explore this logic
   waitUtils.explicitWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(componentSel));
+- take screenshot when fail when run selenium grid

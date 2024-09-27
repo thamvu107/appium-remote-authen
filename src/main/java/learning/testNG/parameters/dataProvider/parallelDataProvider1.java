@@ -118,7 +118,7 @@ public class parallelDataProvider1 {
   //  private List<DeviceConfig> readDeviceConfigsFromExternalSource() {
   private DeviceUnderTest[] readDeviceConfigsFromExternalSource() {
     // Example: Simulating reading from an external JSON file or database
-    Path deviceConfigDataPath = Path.of(DevicePathConstants.DEVICES_JSON_PATH);
+    Path deviceConfigDataPath = Path.of(DevicePathConstants.DEVICES_JSON_FILE);
     DeviceUnderTest[] deviceConfigureCaps =
       DataObjectBuilderUtil.buildDataObject(deviceConfigDataPath, DeviceUnderTest[].class);
 

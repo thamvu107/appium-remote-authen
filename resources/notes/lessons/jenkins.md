@@ -18,7 +18,8 @@
     - 
     
 - download jenkins (LTS)
-- `java -jar path/jenkins.war`
+- Start Jenkins:`java -jar path/jenkins.war`
+  - `java -jar jenkins/jenkins.war`
 
 - Build one run every where
  - POM
@@ -31,3 +32,5 @@
                                </transformers>```
    - Command to build:
    - `mvn clean package -DskipTests`
+   - `java -DplatformType=${platformType} -DmobileRunMode=${mobileRunMode} -Dgrid.username=${grid_username} -Dgrid.password=${grid_password} -jar ./target/appium-1.0-SNAPSHOT-fat-tests.jar`
+

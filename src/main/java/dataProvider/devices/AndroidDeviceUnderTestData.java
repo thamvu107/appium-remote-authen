@@ -14,9 +14,18 @@ public class AndroidDeviceUnderTestData {
   private AndroidDeviceUnderTestData() {
   }
 
-  public  static List<DeviceUnderTest> readDeviceConfigsFromExternalSource() {
 
-    Path deviceConfigDataPath = Paths.get(DevicePathConstants.ANDROID_DEVICES_JSON_PATH);
+  public  static List<DeviceUnderTest> readLocalDeviceConfigsFromExternalSource() {
+
+    Path deviceConfigDataPath = Paths.get(DevicePathConstants.LOCAL_ANDROID_DEVICES_FILE);
+    DeviceUnderTest[] deviceArray = DataObjectBuilderUtil.buildDataObject(deviceConfigDataPath, DeviceUnderTest[].class);
+
+    return Arrays.asList(deviceArray);
+  }
+
+  public  static List<DeviceUnderTest> readSeleniumGridDeviceConfigsFromExternalSource() {
+
+    Path deviceConfigDataPath = Paths.get(DevicePathConstants.REMOTE_ANDROID_DEVICES_FILE);
     DeviceUnderTest[] deviceArray = DataObjectBuilderUtil.buildDataObject(deviceConfigDataPath, DeviceUnderTest[].class);
 
     return Arrays.asList(deviceArray);

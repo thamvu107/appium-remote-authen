@@ -1,12 +1,12 @@
 [
   {
     "deviceName" : "iphone 11",
-    "platformVersion" : "9.0",
+    "platformVersion" : "17.5",
     "configureFile" : "deviceCapConfig/devicesOnRemote/ios/mobile1.properties"
   },
   {
-    "deviceName" : "iphone 10",
-    "platformVersion" : "9.0",
+    "deviceName" : "iphone 15",
+    "platformVersion" : "17.5",
     "configureFile" : "deviceCapConfig/devicesOnRemote/ios/mobile2.properties"
   }
 ]

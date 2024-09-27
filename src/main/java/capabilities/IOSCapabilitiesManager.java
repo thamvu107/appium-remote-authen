@@ -20,8 +20,12 @@ public class IOSCapabilitiesManager {
 //    PropertiesUtils deviceProps = new PropertiesUtils(deviceCapConfig);
 
     XCUITestOptions caps = new XCUITestOptions()
+      .setPlatformVersion(deviceProps.getProperty("platformVersion"))
       .setUdid(deviceProps.getProperty("udid"))
       .setWdaLocalPort(deviceProps.getIntProperty("wdaLocalPort"))
+      .setMjpegServerPort(deviceProps.getIntProperty("mjpegServerPort"))
+//      .setMjpegScreenshotUrl(deviceProps.getProperty("mjpegScreenshotUrl"))
+      .setPrintPageSourceOnFindFailure(deviceProps.getBooleanProperty("printPageSourceOnFindFailure"))
 //      .setApp(Objects.requireNonNull(
 //          IOSCapabilitiesManager.class.getClassLoader().getResource("apps" + File.separator + deviceProps.getProperty("app")))
 //                .getPath())
@@ -43,8 +47,12 @@ public class IOSCapabilitiesManager {
 
   public XCUITestOptions getRealIosMobileCaps(PropertiesMap deviceProps) {
     XCUITestOptions caps = new XCUITestOptions()
+      .setPlatformVersion(deviceProps.getProperty("platformVersion"))
       .setUdid(deviceProps.getProperty("udid"))
       .setWdaLocalPort(deviceProps.getIntProperty("wdaLocalPort"))
+      .setMjpegServerPort(deviceProps.getIntProperty("mjpegServerPort"))
+//      .setMjpegScreenshotUrl(deviceProps.getProperty("mjpegScreenshotUrl"))
+      .setPrintPageSourceOnFindFailure(deviceProps.getBooleanProperty("printPageSourceOnFindFailure"))
 //      .setApp(Objects.requireNonNull(
 //          IOSCapabilitiesManager.class.getClassLoader().getResource("apps" + File.separator + deviceProps.getProperty("app")))
 //                .getPath())

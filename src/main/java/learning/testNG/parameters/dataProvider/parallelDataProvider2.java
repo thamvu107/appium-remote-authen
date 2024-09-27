@@ -175,7 +175,7 @@ public class parallelDataProvider2 {
 
   private static DeviceUnderTest[] readDeviceConfigsFromExternalSource() {
 
-    Path deviceConfigDataPath = Path.of(DevicePathConstants.DEVICES_JSON_PATH);
+    Path deviceConfigDataPath = Path.of(DevicePathConstants.DEVICES_JSON_FILE);
 
     return DataObjectBuilderUtil.buildDataObject(deviceConfigDataPath, DeviceUnderTest[].class);
   }

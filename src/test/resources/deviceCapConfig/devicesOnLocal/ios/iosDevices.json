@@ -1,0 +1,12 @@
+[
+  {
+    "deviceName" : "iphone 11",
+    "platformVersion" : "17.5",
+    "configureFile" : "mobile1.properties"
+  },
+  {
+    "deviceName" : "iphone 15",
+    "platformVersion" : "17.5",
+    "configureFile" : "mobile2.properties"
+  }
+]
