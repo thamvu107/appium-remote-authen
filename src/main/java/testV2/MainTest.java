@@ -64,7 +64,7 @@ public class MainTest {
     suite.setParallel(XmlSuite.ParallelMode.TESTS);
     suite.setThreadCount(6);
 
-//    System.out.println("suite.toXml() " + suite.toXml());
+    System.out.println("suite.toXml() " + suite.toXml());
     writeXmlFile(platformType, suite);
 
     // Add TestSuite into Suite list
