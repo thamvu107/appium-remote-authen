@@ -12,9 +12,9 @@ echo $FILE_PATH
 # Start the Appium servers using AppleScript
 set appium1 "appium server --config '$CONFIG_FILE_PATH/appium1.yml'"
 set appium2 "appium server --config '$CONFIG_FILE_PATH/appium2.yml'"
-set appium3 "appium server --config '$CONFIG_FILE_PATH/appium3.yml'"
-set appium4 "appium server --config '$CONFIG_FILE_PATH/appium4.yml'"
-set appium5 "appium server --config '$CONFIG_FILE_PATH/appium5.yml'"
+# set appium3 "appium server --config '$CONFIG_FILE_PATH/appium3.yml'"
+# set appium4 "appium server --config '$CONFIG_FILE_PATH/appium4.yml'"
+# set appium5 "appium server --config '$CONFIG_FILE_PATH/appium5.yml'"
 
 # Run Appium servers in separate Terminal windows
 osascript -e "
@@ -49,10 +49,10 @@ end tell" &
 
 # Start the Selenium Grid nodes
 # echo "Start Selenium node 1 . . ."
-java -jar "$FILE_PATH"/selenium-server-4.24.0.jar node  --hub http://192.168.1.18:4444 --config "$CONFIG_FILE_PATH/node1.toml"  &
+java -jar "$FILE_PATH"/selenium-server-4.24.0.jar node  --hub http://192.168.1.251:4444 --config "$CONFIG_FILE_PATH/node1.toml"  &
 
 # echo "Start Selenium node 2"
-java -jar "$FILE_PATH"/selenium-server-4.24.0.jar node --hub http://192.168.1.18:4444  --config "$CONFIG_FILE_PATH/node2.toml" &
+java -jar "$FILE_PATH"/selenium-server-4.24.0.jar node --hub http://192.168.1.251:4444/  --config "$CONFIG_FILE_PATH/node2.toml" &
 
 # echo "Start Selenium node 3"
 # java -jar "$FILE_PATH"/selenium-server-4.24.0.jar node --hub http://[2402:800:6341:fc8f:7136:edae:748a:86db]:4444  --config "$CONFIG_FILE_PATH/node5.toml"

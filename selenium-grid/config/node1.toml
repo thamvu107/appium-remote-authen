@@ -1,14 +1,14 @@
 #node-emulator1.toml
 [server]
-port = 5577
+port = 5333
 
 [node]
 detect-drivers = false
 
 [relay]
-url = "http://192.168.1.11:4723"
+url = "http://192.168.1.4:4723"
 status-endpoint = "/status"
 protocol-version = "HTTP/1.1"
 configs = [
-    '1', '{"platformName": "android",  "appium:udid": "emulator-5554", "appium:automationName": "uiautomator2"}'
+    '1', '{"platformName": "IOS",  "appium:udid": "308CAD56-EE4E-470B-AABF-6A8A60B787B4", "appium:automationName": "xcuitest"}'
 ]
