@@ -1,11 +1,11 @@
 # appium1.yml
 server:
   address: "192.168.1.4"
-  port: 4725
+  port: 4723
   keep-alive-timeout: 80
   use-drivers:
     - xcuitest
-#  default-capabilities:
-#    wdaLocalPort: 8100
-#    mjpegServerPort: 9100
+  default-capabilities:
+    wdaLocalPort: 8221
+    mjpegServerPort: 9221
 #    mjpegScreenshotUrl: "http://localhost:9100"

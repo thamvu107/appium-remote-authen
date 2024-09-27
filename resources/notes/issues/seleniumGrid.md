@@ -1,0 +1,11 @@
+- Stuck queue
+  - appium server issue: ( ANDROID_HOME, JAVA_HOME on appium server)
+    - Solution: check env on appium server.
+  - ios cap:
+    - when use udid atribute 
+      - and add platform version ( not add device name)
+      - and not add device name
+      - Then cap is not match -> can not create session on selenium grid -> cap still on queue
+    - Solution: Only use 1 way
+      - Only use udid
+      - OR device name + platform version

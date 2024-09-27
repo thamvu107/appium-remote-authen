@@ -1,7 +1,10 @@
 # appium2.yml
 server:
   address: "192.168.1.4"
-  port: 4727
+  port: 4725
   keep-alive-timeout: 80
   use-drivers:
     - xcuitest
+  default-capabilities:
+    wdaLocalPort: 8331
+    mjpegServerPort: 9331

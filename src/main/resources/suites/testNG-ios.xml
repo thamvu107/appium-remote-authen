@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite thread-count="2" parallel="tests" name="Dynamic Test Suite">
-  <parameter name="platformType" value="IOS"/>
+  <parameter name="platformType" value="iOS"/>
   <test thread-count="2" parallel="tests" name="iphone 15 - 17.5">
     <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/ios/mobile2.properties"/>
     <classes>
