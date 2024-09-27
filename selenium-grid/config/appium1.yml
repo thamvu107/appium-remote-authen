@@ -1,7 +1,7 @@
 # appium1.yml
 server:
   address: "192.168.1.4"
-  port: 4723
+  port: 4725
   keep-alive-timeout: 80
   use-drivers:
     - xcuitest

@@ -2,10 +2,13 @@ package testV2;
 
 import com.google.common.reflect.ClassPath;
 import config.factory.GeneralConfigFactory;
+import constants.filePaths.jsonFiles.DevicePathConstants;
 import dataProvider.devices.AndroidDeviceUnderTestData;
 import dataProvider.devices.IosDeviceUnderTestData;
 import entity.DeviceUnderTest;
+import enums.MobileRunModeType;
 import enums.PlatformType;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -17,12 +20,14 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static constants.filePaths.IBasePaths.TEST_RESOURCES_PATH;
 
+@Slf4j
 public class MainTest {
   public static void main(String[] args) throws IOException {
     // Get all test classes
@@ -31,8 +36,12 @@ public class MainTest {
     // Get Platform
     PlatformType platformType = getPlatformType();
 
+    MobileRunModeType mobileRunModeType = getMobileRunMode();
+
+
     // Devices under test
-    List<DeviceUnderTest> deviceList = getDeviceUnderTests(platformType);
+    List<DeviceUnderTest> deviceList = getDeviceUnderTests(mobileRunModeType, platformType);
+    String deviceUnderTestPath = getDeviceUnderTestPath(mobileRunModeType, platformType);
 
     // Assign devices to test classes
     Map<DeviceUnderTest, List<Class<?>>> desiredCap = assignTestClassesToDevices(testClasses, deviceList);
@@ -42,7 +51,7 @@ public class MainTest {
     XmlSuite suite = new XmlSuite();
     suite.setName("Dynamic Test Suite");
     Map<String, String> suiteParameters = new HashMap<>();
-    suiteParameters.put("platformType", platformType.getPlatformName());
+    suiteParameters.put("platformType", platformType.getPlatformName().toUpperCase());
     suite.setParameters(suiteParameters);
 
 
@@ -56,7 +65,8 @@ public class MainTest {
         xmlClasses.add(new XmlClass(testClass.getName()));
       }
       test.setXmlClasses(xmlClasses);
-      test.addParameter("configureFile", deviceUnderTest.getConfigureFile());
+      String configureFilePath = deviceUnderTestPath + deviceUnderTest.getConfigureFile();
+      test.addParameter("configureFile", configureFilePath);
       allTest.add(test);
     }
 
@@ -74,6 +84,23 @@ public class MainTest {
     // Invoke run method
     testNG.setXmlSuites(suites);
     testNG.run();
+  }
+
+  private static String getDeviceUnderTestPath(MobileRunModeType mobileRunModeType, PlatformType platformType) {
+    String fullPath;
+    switch (mobileRunModeType) {
+      case LOCAL:
+        fullPath = getLocalDeviceUnderTestPath(platformType);
+        break;
+      case SELENIUM_GRID:
+        fullPath = getSeleniumGridDeviceUnderTestPath(platformType);
+        break;
+      default:
+        throw new RuntimeException("Invalid mobileRunModeType: " + mobileRunModeType);
+    }
+
+    String basePath = TEST_RESOURCES_PATH;
+    return fullPath.substring(fullPath.indexOf(basePath) + basePath.length());
   }
 
   private static void writeXmlFile(PlatformType platformType, XmlSuite suite) {
@@ -99,7 +126,7 @@ public class MainTest {
   private static Map<DeviceUnderTest, List<Class<?>>> assignTestClassesToDevices(List<Class<?>> testClasses,
                                                                                  List<DeviceUnderTest> deviceList) {
     int testNumEachDevice = testClasses.size() / deviceList.size();
-    System.out.println("testNumEachDevice: " +testNumEachDevice);
+    System.out.println("testNumEachDevice: " + testNumEachDevice);
 
     Map<DeviceUnderTest, List<Class<?>>> map = new HashMap<>();
     for (int deviceIndex = 0; deviceIndex < deviceList.size(); deviceIndex++) {
@@ -112,19 +139,111 @@ public class MainTest {
     return map;
   }
 
-  private static List<DeviceUnderTest> getDeviceUnderTests(PlatformType platformType) {
-    List<DeviceUnderTest> iosDevices = IosDeviceUnderTestData.readDeviceConfigsFromExternalSource();
-    List<DeviceUnderTest> androidDevices = AndroidDeviceUnderTestData.readDeviceConfigsFromExternalSource();
-    List<DeviceUnderTest> deviceList = platformType == PlatformType.IOS ? iosDevices : androidDevices;
+  private static String getSeleniumGridDeviceUnderTestPath(PlatformType platformType) {
+    String fullPath;
+    switch (platformType) {
+      case IOS:
+        fullPath = DevicePathConstants.REMOTE_IOS_DEVICES_JSON_PATH;
+        break;
+      case ANDROID:
+        fullPath = DevicePathConstants.REMOTE_ANDROID_DEVICES_JSON_PATH;
+        break;
+      default:
+        log.atError().log("Invalid platform type: " + platformType);
+        throw new RuntimeException("Invalid platform type: " + platformType);
+    }
+
+    log.atInfo().log("Selenium grid device under test path: " + fullPath);
+
+    return fullPath;
+  }
+
+  private static String getLocalDeviceUnderTestPath(PlatformType platformType) {
+    String fullPath;
+    switch (platformType) {
+      case IOS:
+        fullPath = DevicePathConstants.LOCAL_IOS_DEVICES_JSON_PATH;
+        break;
+      case ANDROID:
+        fullPath = DevicePathConstants.LOCAL_ANDROID_DEVICES_JSON_PATH;
+        break;
+      default:
+        log.atError().log("Invalid platform type: " + platformType);
+        throw new RuntimeException("Invalid platform type: " + platformType);
+    }
+
+    log.atInfo().log("Selenium grid device under test path: " + fullPath);
+
+    return fullPath;
+  }
+
+
+  private static List<DeviceUnderTest> getDeviceUnderTests(MobileRunModeType mobileRunModeType, PlatformType platformType) {
+
+    List<DeviceUnderTest> deviceList ;
+    switch (mobileRunModeType) {
+      case LOCAL:
+        deviceList = getLocalDeviceUnderTests(platformType);
+        break;
+      case SELENIUM_GRID:
+        deviceList = getSeleniumGridDeviceUnderTests(platformType);
+        break;
+      default:
+        log.atError().log("Invalid mobile run mode type: " + mobileRunModeType);
+        throw new RuntimeException("Invalid mobile run mode type: " + mobileRunModeType);
+    }
+
+    log.atInfo().log("Total number of device under test: " + deviceList.size() + "\n"+ deviceList.toString());
+
+
     return deviceList;
+  }
+
+  private static List<DeviceUnderTest> getLocalDeviceUnderTests(PlatformType platformType) {
+
+    List<DeviceUnderTest> iosDevices = IosDeviceUnderTestData.readLocalDeviceConfigsFromExternalSource();
+    List<DeviceUnderTest> androidDevices = AndroidDeviceUnderTestData.readLocalDeviceConfigsFromExternalSource();
+
+    return platformType == PlatformType.IOS ? iosDevices : androidDevices;
+  }
+
+
+  private static List<DeviceUnderTest> getSeleniumGridDeviceUnderTests(PlatformType platformType) {
+
+    List<DeviceUnderTest> iosDevices = IosDeviceUnderTestData.readSeleniumGridDeviceConfigsFromExternalSource();
+    List<DeviceUnderTest> androidDevices = AndroidDeviceUnderTestData.readSeleniumGridDeviceConfigsFromExternalSource();
+
+    return platformType == PlatformType.IOS ? iosDevices : androidDevices;
   }
 
   private static PlatformType getPlatformType() {
     PlatformType platformType = GeneralConfigFactory.getConfig().getPlatformType();
-    if (platformType == null) {
-      throw new RuntimeException("Platform type not found");
+
+    switch (platformType) {
+      case IOS:
+      case ANDROID:
+        log.atInfo().log("Running test on platform: " + platformType);
+        return platformType;
+      default:
+        List<PlatformType> platformTypesList = Arrays.asList(PlatformType.values());
+        log.atError().log("Invalid platform type: " + platformType + ". Platform type are supported in " + platformTypesList);
+        throw new RuntimeException("Invalid platform type: " + platformType + ". Platform type are supported in " + platformTypesList);
     }
-    return platformType;
+  }
+
+  private static MobileRunModeType getMobileRunMode() {
+    MobileRunModeType mobileRunModeType = GeneralConfigFactory.getConfig().getMobileRunMode();
+    switch (mobileRunModeType) {
+      case LOCAL:
+      case SELENIUM_GRID:
+        log.atInfo().log("Running test on mobile run mode: " + mobileRunModeType);
+        return mobileRunModeType;
+      default:
+        List<MobileRunModeType> runModesList = Arrays.asList(MobileRunModeType.values());
+        log.atError().log("Invalid mobile run mode type: " + mobileRunModeType + ". Mobile run mode are supported in " + runModesList);
+        throw new RuntimeException(
+          "Invalid mobile run mode type: " + mobileRunModeType + ". Mobile run mode are supported in " + runModesList);
+    }
   }
 
   private static List<Class<?>> getTestClasses() throws IOException {
@@ -132,7 +251,6 @@ public class MainTest {
     List<Class<?>> testClasses = new ArrayList<>();
     for (ClassPath.ClassInfo info : ClassPath.from(loader).getAllClasses()) {
       String classInfoName = info.getName();
-//      System.out.println("classInfoName " + classInfoName);
       boolean startWithTestDot = classInfoName.startsWith("testV2.");
       boolean isMainTestClass = classInfoName.startsWith("testV2.MainTest");
       if (startWithTestDot && !isMainTestClass) {

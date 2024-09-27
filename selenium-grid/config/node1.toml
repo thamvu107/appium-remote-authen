@@ -6,7 +6,7 @@ port = 5333
 detect-drivers = false
 
 [relay]
-url = "http://192.168.1.4:4723"
+url = "http://192.168.1.4:4725"
 status-endpoint = "/status"
 protocol-version = "HTTP/1.1"
 configs = [
