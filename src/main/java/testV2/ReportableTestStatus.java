@@ -17,7 +17,9 @@ import static interfaces.IAuthor.THAM_VU;
 public class ReportableTestStatus extends BaseTestV9 {
 
 //  @Author(THAM_VU)
-//  @Test(enabled = false, dataProvider = "loginCredValidUser", dataProviderClass = LoginCredData.class,
+//  @Test(description = "Test case for purpose to show broken test",
+//    enabled = false,
+//    dataProvider = "loginCredValidUser", dataProviderClass = LoginCredData.class,
 //    groups = {"funcTest", "checkInTest"})
 //  public void skipTest(LoginCred loginCred) {
 //    SignInFlow signInFlow = signInFlow();
@@ -29,7 +31,8 @@ public class ReportableTestStatus extends BaseTestV9 {
   @Test(description = "Test case for purpose to show broken test",
     dataProvider = "loginCredInvalidEmail",
     dataProviderClass = LoginCredData.class,
-    groups = {"brokenTests"})
+    groups = {"brokenTests"},
+    enabled = false)
   public void brokenTest(LoginCred loginCred) {
     SignInFlow signInFlow = signInFlow();
     signInFlow
@@ -40,7 +43,8 @@ public class ReportableTestStatus extends BaseTestV9 {
   @Test(description = "Test case for purpose to show failure test",
     dataProvider = "loginCredInvalidEmail",
     dataProviderClass = LoginCredData.class,
-    groups = {"brokenTests"})
+    groups = {"brokenTests"},
+    enabled = false)
   public void failTest(LoginCred loginCred) {
     SignInFlow signInFlow = signInFlow();
     Assert.fail("Test case for purpose to show failure test");
