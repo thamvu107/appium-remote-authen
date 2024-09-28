@@ -180,7 +180,7 @@ public class MainTest {
 
   private static List<DeviceUnderTest> getDeviceUnderTests(MobileRunModeType mobileRunModeType, PlatformType platformType) {
 
-    List<DeviceUnderTest> deviceList ;
+    List<DeviceUnderTest> deviceList;
     switch (mobileRunModeType) {
       case LOCAL:
         deviceList = getLocalDeviceUnderTests(platformType);
@@ -193,7 +193,7 @@ public class MainTest {
         throw new RuntimeException("Invalid mobile run mode type: " + mobileRunModeType);
     }
 
-    log.atInfo().log("Total number of device under test: " + deviceList.size() + "\n"+ deviceList.toString());
+    log.atInfo().log("Total number of device under test: " + deviceList.size() + "\n" + deviceList.toString());
 
 
     return deviceList;
@@ -218,32 +218,16 @@ public class MainTest {
 
   private static PlatformType getPlatformType() {
     PlatformType platformType = GeneralConfigFactory.getConfig().getPlatformType();
+    log.atInfo().log("Running test on platform: " + platformType);
 
-    switch (platformType) {
-      case IOS:
-      case ANDROID:
-        log.atInfo().log("Running test on platform: " + platformType);
-        return platformType;
-      default:
-        List<PlatformType> platformTypesList = Arrays.asList(PlatformType.values());
-        log.atError().log("Invalid platform type: " + platformType + ". Platform type are supported in " + platformTypesList);
-        throw new RuntimeException("Invalid platform type: " + platformType + ". Platform type are supported in " + platformTypesList);
-    }
+    return platformType;
   }
 
   private static MobileRunModeType getMobileRunMode() {
     MobileRunModeType mobileRunModeType = GeneralConfigFactory.getConfig().getMobileRunMode();
-    switch (mobileRunModeType) {
-      case LOCAL:
-      case SELENIUM_GRID:
-        log.atInfo().log("Running test on mobile run mode: " + mobileRunModeType);
-        return mobileRunModeType;
-      default:
-        List<MobileRunModeType> runModesList = Arrays.asList(MobileRunModeType.values());
-        log.atError().log("Invalid mobile run mode type: " + mobileRunModeType + ". Mobile run mode are supported in " + runModesList);
-        throw new RuntimeException(
-          "Invalid mobile run mode type: " + mobileRunModeType + ". Mobile run mode are supported in " + runModesList);
-    }
+    log.atInfo().log("Running test on mobile run mode: " + mobileRunModeType);
+
+    return mobileRunModeType;
   }
 
   private static List<Class<?>> getTestClasses() throws IOException {
