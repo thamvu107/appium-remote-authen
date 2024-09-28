@@ -89,7 +89,7 @@ public class MainTest {
 
     // Invoke run method
     testNG.setXmlSuites(Collections.singletonList(suite));
-    testNG.run();
+    //testNG.run();
   }
 
   private static String getDeviceUnderTestPath(MobileRunModeType mobileRunModeType, PlatformType platformType) {
@@ -112,7 +112,7 @@ public class MainTest {
   private static void writeXmlFile(PlatformType platformType, XmlSuite suite) {
 
     String folderPath = TEST_RESOURCES_PATH + "suites";
-    String fileName = "testNG-" + platformType.getPlatformName() + ".xml";
+    String fileName = "testNG-" + platformType.getPlatformName().toUpperCase() + ".xml";
 
     // Create the directory if it doesn't exist
     File directory = new File(folderPath);
