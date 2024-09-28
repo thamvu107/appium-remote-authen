@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite thread-count="2" parallel="tests" name="Dynamic Test Suite">
-  <parameter name="platformType" value="iOS"/>
+  <parameter name="platformType" value="IOS"/>
   <test thread-count="2" parallel="tests" name="iphone 15 - 17.5">
-    <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/ios/mobile2.properties"/>
+    <parameter name="configureFile" value="deviceCapConfig/devicesOnLocal/ios/mobile2.properties"/>
     <classes>
       <class name="testV2.authen.SignUpTest"/>
     </classes>
   </test> <!-- iphone 15 - 17.5 -->
   <test thread-count="2" parallel="tests" name="iphone 11 - 17.5">
-    <parameter name="configureFile" value="deviceCapConfig/devicesOnRemote/ios/mobile1.properties"/>
+    <parameter name="configureFile" value="deviceCapConfig/devicesOnLocal/ios/mobile1.properties"/>
     <classes>
       <class name="testV2.authen.SignInTest"/>
     </classes>

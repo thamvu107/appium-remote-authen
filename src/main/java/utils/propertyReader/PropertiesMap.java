@@ -40,7 +40,7 @@ public class PropertiesMap {
     try {
       return Integer.parseInt(propertyValue);
     } catch (NumberFormatException e) {
-      log.atError().log(String.format("Invalid number format for property '%s': %s", propertyName, propertyValue));
+      log.atError().log(String.format("Invalid number format for property '%s': %s \n %s", propertyName, propertyValue, e.getMessage()));
       throw new IllegalArgumentException(String.format("Invalid number format for property '%s': %s", propertyName, propertyValue), e);
     }
   }

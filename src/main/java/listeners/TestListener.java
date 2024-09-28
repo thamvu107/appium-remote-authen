@@ -4,6 +4,7 @@ package listeners;
 import driver.ThreadSafeDriver;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Allure;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,9 +21,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Slf4j
 public class TestListener implements ITestListener {
-
-
   @Override
   public void onTestFailure(ITestResult result) {
     captureLocalScreenShot(result);
@@ -36,7 +36,7 @@ public class TestListener implements ITestListener {
       String method = result.getMethod().getRealClass().getSimpleName() + "-" + result.getMethod().getMethodName();
       File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
       DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
-      String destDir = "screenshots" + File.separator + "failures";
+      String destDir = "target" + File.separator + "screenshots" + File.separator + "failures";
 
       // To create folder to store screenshots
       new File(destDir).mkdirs();
@@ -51,6 +51,7 @@ public class TestListener implements ITestListener {
         InputStream inputStream = Files.newInputStream(screenshotContentPath);
         Allure.addAttachment(result.getName(), inputStream);
       } catch (IOException e) {
+        log.atError().setMessage(e.getMessage()).log();
         e.printStackTrace();
       }
     }
