@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +51,13 @@ public class MainTest {
     TestNG testNG = new TestNG();
     XmlSuite suite = new XmlSuite();
     suite.setName("Dynamic Test Suite");
+
     Map<String, String> suiteParameters = new HashMap<>();
     suiteParameters.put("platformType", platformType.getPlatformName().toUpperCase());
     suite.setParameters(suiteParameters);
+
+    // Add listener
+    suite.addListener("listeners.TestListener");
 
 
     List<XmlTest> allTest = new ArrayList<>();
@@ -74,7 +79,8 @@ public class MainTest {
     suite.setParallel(XmlSuite.ParallelMode.TESTS);
     suite.setThreadCount(deviceList.size());
 
-    System.out.println("suite.toXml() " + suite.toXml());
+    log.atInfo().log("suite.toXml() " + suite.toXml());
+//    System.out.println("suite.toXml() " + suite.toXml());
     writeXmlFile(platformType, suite);
 
     // Add TestSuite into Suite list
@@ -82,7 +88,7 @@ public class MainTest {
     suites.add(suite);
 
     // Invoke run method
-    testNG.setXmlSuites(suites);
+    testNG.setXmlSuites(Collections.singletonList(suite));
     testNG.run();
   }
 
@@ -238,6 +244,7 @@ public class MainTest {
       boolean startWithTestDot = classInfoName.startsWith("testV2.");
       boolean isMainTestClass = classInfoName.startsWith("testV2.MainTest");
       if (startWithTestDot && !isMainTestClass) {
+        log.atInfo().log("Found test class: " + classInfoName);
         testClasses.add(info.load());
       }
     }
