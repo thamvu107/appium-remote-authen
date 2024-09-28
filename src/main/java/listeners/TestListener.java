@@ -24,13 +24,25 @@ import java.util.Date;
 @Slf4j
 public class TestListener implements ITestListener {
   @Override
+  public void onTestStart(ITestResult result) {
+    log.info("Test Started: " + result.getMethod().getMethodName());
+  }
+
+  @Override
+  public void onTestSuccess(ITestResult result) {
+    log.info("Test Passed: " + result.getMethod().getMethodName());
+  }
+
+  @Override
   public void onTestFailure(ITestResult result) {
+    log.atError().log("Test Failed: " + result.getMethod().getMethodName());
     captureLocalScreenShot(result);
   }
 
   public void captureLocalScreenShot(ITestResult result) {
     boolean testIsFailed = result.getStatus() == ITestResult.FAILURE;
     if (testIsFailed) {
+      log.atError().log("Test failed: " + result.getMethod().getMethodName());
       final AppiumDriver driver = ThreadSafeDriver.getDriver();
 
       String method = result.getMethod().getRealClass().getSimpleName() + "-" + result.getMethod().getMethodName();
@@ -44,6 +56,8 @@ public class TestListener implements ITestListener {
       String destFile = method + " - " + dateFormat.format(new Date()) + ".png";
 
       String screenshotLocation = Paths.get(destDir, destFile).toString();
+      log.atInfo().log("screenshotLocation " + screenshotLocation);
+      System.out.println("screenshotLocation " + screenshotLocation);
 
       try {
         FileUtils.copyFile(scrFile, new File(screenshotLocation));

@@ -31,19 +31,20 @@ public class TestListener implements ITestListener {
   public void captureLocalScreenShot(ITestResult result) {
     boolean testIsFailed = result.getStatus() == ITestResult.FAILURE;
     if (testIsFailed) {
-      final AppiumDriver driver = ThreadSafeDriver.getDriver();
 
-      String method = result.getMethod().getRealClass().getSimpleName() + "-" + result.getMethod().getMethodName();
-      File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-      DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
-      String destDir = "screenshots" + File.separator + "failures";
-
+//      String destDir =  System.getProperty("user.dir") + File.separator + "screenshots" + File.separator + "failures";
+      String destDir =  "target" + File.separator + "screenshots" + File.separator + "failures";
       // To create folder to store screenshots
       new File(destDir).mkdirs();
+
+      String method = result.getMethod().getRealClass().getSimpleName() + "-" + result.getMethod().getMethodName();
+      DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
       // Set file name with combination of test class name + date time.
       String destFile = method + " - " + dateFormat.format(new Date()) + ".png";
 
       String screenshotLocation = Paths.get(destDir, destFile).toString();
+
+      File scrFile = ((TakesScreenshot) ThreadSafeDriver.getDriver()).getScreenshotAs(OutputType.FILE);
 
       try {
         FileUtils.copyFile(scrFile, new File(screenshotLocation));

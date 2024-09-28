@@ -100,8 +100,6 @@ public class BaseScreen {
     if (element == null) {
       log.atError().setMessage("Page is not loaded. Element not found: " + locator).log();
       throw new NoSuchElementException("Page is not loaded. Element not found: " + locator);
-    } else {
-      log.atInfo().setMessage("Page is loaded. Element found: " + locator).log();
     }
   }
 }
