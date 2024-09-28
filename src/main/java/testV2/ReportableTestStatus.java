@@ -26,7 +26,7 @@ public class ReportableTestStatus extends BaseTestV9 {
 //      .verifyAlertIsPresent(SIGN_IN_ALERT_TITLE, SIGN_IN_ALERT_MESSAGE);
 //  }
 
-  @Test(description = "Test case for purpose to show failure test",
+  @Test(description = "Test case for purpose to show broken test",
     dataProvider = "loginCredInvalidEmail",
     dataProviderClass = LoginCredData.class,
     groups = {"brokenTests"})
@@ -41,7 +41,7 @@ public class ReportableTestStatus extends BaseTestV9 {
     dataProvider = "loginCredInvalidEmail",
     dataProviderClass = LoginCredData.class,
     groups = {"brokenTests"})
-  public void brokenTest2(LoginCred loginCred) {
+  public void failTest(LoginCred loginCred) {
     SignInFlow signInFlow = signInFlow();
     Assert.fail("Test case for purpose to show failure test");
     signInFlow
