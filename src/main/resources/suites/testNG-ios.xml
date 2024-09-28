@@ -8,14 +8,13 @@
   <test thread-count="2" parallel="tests" name="iphone 15 - 17.5">
     <parameter name="configureFile" value="deviceCapConfig/devicesOnLocal/ios/mobile2.properties"/>
     <classes>
-      <class name="testV2.authen.SignInTest"/>
       <class name="testV2.authen.SignUpTest"/>
     </classes>
   </test> <!-- iphone 15 - 17.5 -->
   <test thread-count="2" parallel="tests" name="iphone 11 - 17.5">
     <parameter name="configureFile" value="deviceCapConfig/devicesOnLocal/ios/mobile1.properties"/>
     <classes>
-      <class name="testV2.ReportableTestStatus"/>
+      <class name="testV2.authen.SignInTest"/>
     </classes>
   </test> <!-- iphone 11 - 17.5 -->
 </suite> <!-- Dynamic Test Suite -->
